@@ -17,7 +17,7 @@ export default function Footer() {
                 <div className="text-xs text-gray-400">Теплоизоляция трубопроводов</div>
               </div>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <p className="text-sm text-gray-400 ">
               Производство предизолированных труб, фасонных изделий и комплектующих для тепловых сетей.
             </p>
           </div>

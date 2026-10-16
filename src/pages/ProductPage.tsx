@@ -47,7 +47,7 @@ export default function ProductPage() {
           <div>
             <div className="text-sm text-brand-600 font-medium mb-2">{product.category}</div>
             <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
-            <p className="text-gray-600 mb-6 leading-relaxed">{product.description}</p>
+            <p className="text-gray-600 mb-6 ">{product.description}</p>
 
             {/* Features */}
             <div className="mb-6">

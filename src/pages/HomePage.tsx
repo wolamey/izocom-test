@@ -79,7 +79,7 @@ export default function HomePage() {
       {/* Application areas */}
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Области применения</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center subtitle">Области применения</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { title: 'Тепловые сети', desc: 'Горячее водоснабжение и отопление городов и посёлков', icon: '🏙️' },
@@ -203,7 +203,7 @@ export default function HomePage() {
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
               <div>
                 <h2 className="text-3xl font-bold text-white mb-4">Запросить расчёт</h2>
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-gray-300 mb-6 ">
                   Отправьте заявку — мы подберём продукцию, рассчитаем стоимость и подготовим коммерческое предложение.
                 </p>
                 <div className="space-y-3 text-sm text-gray-400">
