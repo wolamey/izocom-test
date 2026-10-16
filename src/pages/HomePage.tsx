@@ -9,19 +9,19 @@ export default function HomePage() {
     <div>
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-gray-50 via-white to-brand-50 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div className="absolute z-1 inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
+        <div className="max-w-7xl relative z-2 mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 text-brand-700 text-sm font-medium rounded-full mb-6">
                 <Zap size={14} />
                 Производство с 2005 года
               </div>
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              <h1 className="text-4xl lg:text-7xl xl:text-7xl   title leading-[0.8]  text-gray-900   mb-2">
                 Предизолированные трубы
                 <span className="text-brand-600"> ППУ</span>
               </h1>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
+              <p className="text-lg text-gray-600 mb-8  leading-[0.95] font-thin max-w-lg">
                 Стальные трубы в пенополиуретановой изоляции, фасонные изделия и комплектующие для тепловых сетей. Производство по ГОСТ 30732-2006.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
@@ -75,7 +75,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-10">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Что производим</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2 subtitle">Что производим</h2>
               <p className="text-gray-500">Полный ассортимент продукции для тепловых сетей</p>
             </div>
             <Link to="/products" className="hidden sm:inline-flex items-center gap-1 text-brand-600 font-medium text-sm hover:gap-2 transition-all">
@@ -109,7 +109,7 @@ export default function HomePage() {
       {/* Application areas */}
       <section className="py-16 lg:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Области применения</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center subtitle">Области применения</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { title: 'Тепловые сети', desc: 'Горячее водоснабжение и отопление городов и посёлков', icon: '🏙️' },
@@ -132,7 +132,7 @@ export default function HomePage() {
       {/* Advantages */}
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Почему выбирают нас</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center subtitle">Почему выбирают нас</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: Shield, title: 'Качество по ГОСТ', desc: 'Вся продукция сертифицирована и соответствует ГОСТ 30732-2006' },
@@ -158,7 +158,7 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Собственное производство</h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 ">
                 Производственная площадка оснащена современным оборудованием для изоляции труб диаметром от 57 до 1020 мм. 
                 Контроль качества на каждом этапе — от подготовки стальной трубы до нанесения защитной оболочки.
               </p>
@@ -217,7 +217,7 @@ export default function HomePage() {
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
               <div>
                 <h2 className="text-3xl font-bold text-white mb-4">Запросить расчёт</h2>
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-gray-300 mb-6 ">
                   Отправьте заявку — мы подберём продукцию, рассчитаем стоимость и подготовим коммерческое предложение.
                 </p>
                 <div className="space-y-3 text-sm text-gray-400">
