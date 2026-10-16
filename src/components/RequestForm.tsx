@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Send, Paperclip, CheckCircle, AlertCircle } from 'lucide-react';
+import { Button } from './ui/Button';
 
 interface RequestFormProps {
   productName?: string;
@@ -176,35 +177,16 @@ export default function RequestForm({ productName, compact = false }: RequestFor
         )}
       </div>
 
-      {!compact && (
-        <button
-          type="submit"
-          disabled={status === 'sending'}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
-        >
-          {status === 'sending' ? (
-            <>
-              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              Отправка...
-            </>
-          ) : (
-            <>
-              <Send size={16} />
-              Отправить запрос
-            </>
-          )}
-        </button>
-      )}
-
-      {compact && (
-        <button
-          type="submit"
-          disabled={status === 'sending'}
-          className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 disabled:opacity-50 transition-colors"
-        >
-          {status === 'sending' ? 'Отправка...' : 'Отправить запрос'}
-        </button>
-      )}
+      <Button
+        type="submit"
+        disabled={status === 'sending'}
+        variant="primary"
+        size={compact ? 'md' : 'lg'}
+        fullWidth={compact}
+        icon={status === 'sending' ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Send size={16} />}
+      >
+        {status === 'sending' ? 'Отправка...' : 'Отправить запрос'}
+      </Button>
     </form>
   );
 }
