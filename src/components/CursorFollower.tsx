@@ -32,37 +32,61 @@ export default function CursorFollower() {
   }, []);
 
   return (
-    <div
-      className="fixed pointer-events-none z-[1] mix-blend-multiply"
-      style={{
-        left: pos.x,
-        top: pos.y,
-        transform: 'translate(-50%, -50%)',
-        willChange: 'transform',
-      }}
-    >
-      {/* Основной красный blur */}
+    <>
+      {/* Для светлых фонов */}
       <div
-        className="w-[500px] h-[500px] rounded-full"
+        className="fixed pointer-events-none z-[1] mix-blend-multiply"
         style={{
-          background: `radial-gradient(circle at center,
-            rgba(220, 38, 38, 0.15) 0%,
-            rgba(220, 38, 38, 0.08) 25%,
-            rgba(220, 38, 38, 0.03) 50%,
-            transparent 75%
-          )`,
-          filter: 'blur(30px)',
+          left: pos.x,
+          top: pos.y,
+          transform: 'translate(-50%, -50%)',
+          willChange: 'transform',
         }}
-      />
-      {/* Вторичное свечение */}
+      >
+        <div
+          className="w-[500px] h-[500px] rounded-full"
+          style={{
+            background: `radial-gradient(circle at center,
+              rgba(220, 38, 38, 0.15) 0%,
+              rgba(220, 38, 38, 0.08) 25%,
+              rgba(220, 38, 38, 0.03) 50%,
+              transparent 75%
+            )`,
+            filter: 'blur(30px)',
+          }}
+        />
+      </div>
+      
+      {/* Для темных фонов */}
       <div
-        className="absolute top-1/2 left-1/2 w-[250px] h-[250px] rounded-full -translate-x-1/2 -translate-y-1/2"
+        className="fixed pointer-events-none z-[1] mix-blend-screen"
         style={{
-          background: 'radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 60%)',
-          filter: 'blur(20px)',
-          mixBlendMode: 'overlay',
+          left: pos.x,
+          top: pos.y,
+          transform: 'translate(-50%, -50%)',
+          willChange: 'transform',
         }}
-      />
-    </div>
+      >
+        <div
+          className="w-[500px] h-[500px] rounded-full"
+          style={{
+            background: `radial-gradient(circle at center,
+              rgba(220, 38, 38, 0.25) 0%,
+              rgba(220, 38, 38, 0.15) 25%,
+              rgba(220, 38, 38, 0.05) 50%,
+              transparent 75%
+            )`,
+            filter: 'blur(40px)',
+          }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 w-[200px] h-[200px] rounded-full -translate-x-1/2 -translate-y-1/2"
+          style={{
+            background: 'radial-gradient(circle, rgba(255,100,100,0.3) 0%, transparent 60%)',
+            filter: 'blur(20px)',
+          }}
+        />
+      </div>
+    </>
   );
 }

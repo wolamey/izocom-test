@@ -84,17 +84,17 @@ export default function HeroSection() {
     const total = slides.length;
     const diff = ((index - currentSlide + total) % total);
 
-    // Semicircle trajectory — from bottom-left to top-right
+    // Semicircle trajectory — adjusted to fit within container
     const angle = (diff / total) * Math.PI;
-    const radiusX = 40;
-    const radiusY = 35;
+    const radiusX = 35;
+    const radiusY = 30;
     const centerX = 50;
-    const centerY = 55;
+    const centerY = 50;
 
     const x = centerX + Math.cos(angle - Math.PI / 2) * radiusX;
     const y = centerY - Math.sin(angle - Math.PI / 2) * radiusY;
 
-    const scale = diff === 0 ? 1 : diff === 1 || diff === total - 1 ? 0.75 : 0.55;
+    const scale = diff === 0 ? 1 : diff === 1 || diff === total - 1 ? 0.7 : 0.5;
     const opacity = diff === 0 ? 1 : diff === 1 || diff === total - 1 ? 0.6 : 0.25;
     const zIndex = diff === 0 ? 30 : diff === 1 || diff === total - 1 ? 20 : 10;
 
@@ -187,7 +187,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right side — semicircle slider */}
-          <div className="hidden lg:block relative h-full max-h-[600px]">
+          <div className="hidden lg:block relative h-full max-h-[550px]">
             {/* Semicircle track */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.1 }}>
               <path
@@ -215,7 +215,7 @@ export default function HeroSection() {
                     zIndex: pos.zIndex,
                   }}
                 >
-                  <div className={`relative bg-white rounded-2xl p-5 w-72 transition-all duration-500 ${
+                  <div className={`relative bg-white rounded-2xl p-4 w-64 transition-all duration-500 ${
                     isActive
                       ? 'shadow-2xl shadow-brand-600/20 border-2 border-brand-200'
                       : 'shadow-lg border border-gray-100'
@@ -224,13 +224,13 @@ export default function HeroSection() {
                       <div className="absolute -top-2 -right-2 w-3 h-3 bg-brand-600 rounded-full animate-pulse" />
                     )}
                     <ProductImage type={s.image} className="aspect-[4/3] rounded-xl" />
-                    <div className="mt-3 grid grid-cols-3 gap-2">
+                    <div className="mt-3 grid grid-cols-3 gap-1.5">
                       {s.stats.map((stat, j) => (
-                        <div key={j} className={`text-center p-2 rounded-lg transition-colors ${
+                        <div key={j} className={`text-center p-1.5 rounded-lg transition-colors ${
                           isActive ? 'bg-brand-50' : 'bg-gray-50'
                         }`}>
-                          <div className={`text-base font-bold transition-colors ${isActive ? 'text-brand-600' : 'text-gray-700'}`}>{stat.value}</div>
-                          <div className="text-[10px] text-gray-500">{stat.label}</div>
+                          <div className={`text-sm font-bold transition-colors ${isActive ? 'text-brand-600' : 'text-gray-700'}`}>{stat.value}</div>
+                          <div className="text-[9px] text-gray-500">{stat.label}</div>
                         </div>
                       ))}
                     </div>

@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 export default function HomePage() {
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
+  const [activeArea, setActiveArea] = useState<number | null>(null);
 
   return (
     <div>
@@ -58,12 +59,14 @@ export default function HomePage() {
 
                 <div className="relative">
                   <div className="w-14 h-14 bg-white/10 group-hover:bg-brand-500/30 rounded-2xl flex items-center justify-center mb-5 transition-all duration-500">
-                    <CategoryIcon type={cat.icon} />
+                    <div className="text-white/50 group-hover:text-brand-400 transition-colors duration-500">
+                      <CategoryIcon type={cat.icon} />
+                    </div>
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-brand-400 transition-colors">{cat.name}</h3>
                   <p className="text-sm text-gray-400 mb-5 line-clamp-2">{cat.description}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-brand-400 font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                    <span className="text-sm text-white font-medium flex items-center gap-1 group-hover:gap-2 group-hover:text-brand-400 transition-all">
                       {cat.products.length} {cat.products.length === 1 ? 'позиция' : 'позиции'}
                     </span>
                     <ArrowRight size={16} className="text-white/30 group-hover:text-brand-400 group-hover:translate-x-1 transition-all" />
@@ -96,16 +99,30 @@ export default function HomePage() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="group flex items-start gap-4 p-5 bg-gray-50 hover:bg-brand-50 border border-gray-100 hover:border-brand-200 rounded-xl transition-all duration-300 cursor-pointer"
+                  onMouseEnter={() => setActiveArea(i)}
+                  onMouseLeave={() => setActiveArea(null)}
+                  className={`group flex items-start gap-4 p-5 border rounded-xl transition-all duration-300 cursor-pointer ${
+                    activeArea === i
+                      ? 'bg-brand-50 border-brand-200 shadow-lg scale-[1.02]'
+                      : 'bg-gray-50 border-gray-100 hover:bg-brand-50 hover:border-brand-200'
+                  }`}
                 >
-                  <div className="w-12 h-12 bg-white group-hover:bg-brand-100 rounded-xl flex items-center justify-center shrink-0 transition-colors">
-                    {item.icon}
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
+                    activeArea === i ? 'bg-brand-500 scale-110' : 'bg-white group-hover:bg-brand-100'
+                  }`}>
+                    <div className={`transition-colors duration-300 ${activeArea === i ? 'text-white' : 'text-brand-600'}`}>
+                      {item.icon}
+                    </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900 group-hover:text-brand-600 transition-colors mb-1">{item.title}</h3>
+                    <h3 className={`font-semibold transition-colors mb-1 ${
+                      activeArea === i ? 'text-brand-600' : 'text-gray-900 group-hover:text-brand-600'
+                    }`}>{item.title}</h3>
                     <p className="text-sm text-gray-500">{item.desc}</p>
                   </div>
-                  <ArrowRight size={18} className="text-gray-300 group-hover:text-brand-600 group-hover:translate-x-1 transition-all shrink-0 mt-1" />
+                  <ArrowRight size={18} className={`transition-all shrink-0 mt-1 ${
+                    activeArea === i ? 'text-brand-600 translate-x-1' : 'text-gray-300 group-hover:text-brand-600 group-hover:translate-x-1'
+                  }`} />
                 </div>
               ))}
             </div>
@@ -114,22 +131,25 @@ export default function HomePage() {
             <div className="relative lg:sticky lg:top-32">
               <div className="bg-gradient-to-br from-brand-50 to-blue-50 rounded-2xl p-8 border border-gray-100">
                 <div className="aspect-square max-w-md mx-auto relative">
-                  <svg viewBox="0 0 400 400" className="w-full h-full">
+                  <svg viewBox="0 0 400 400" className="w-full h-full transition-transform duration-700" style={{
+                    transform: activeArea !== null ? `rotate(${-activeArea * 60}deg)` : 'rotate(0deg)'
+                  }}>
                     {/* Central circle */}
-                    <circle cx="200" cy="200" r="60" fill="#dc2626" opacity="0.1" />
-                    <circle cx="200" cy="200" r="40" fill="#dc2626" opacity="0.2" />
-                    <text x="200" y="205" textAnchor="middle" fill="#dc2626" fontSize="14" fontWeight="600">ППУ</text>
+                    <circle cx="200" cy="200" r="60" fill="#dc2626" opacity="0.1" className="transition-all duration-500" />
+                    <circle cx="200" cy="200" r="40" fill="#dc2626" opacity="0.2" className="transition-all duration-500" />
+                    <text x="200" y="205" textAnchor="middle" fill="#dc2626" fontSize="14" fontWeight="600" className="transition-all duration-500">ППУ</text>
                     
                     {/* Orbiting circles */}
                     {[0, 60, 120, 180, 240, 300].map((angle, i) => {
                       const rad = (angle * Math.PI) / 180;
                       const x = 200 + Math.cos(rad) * 140;
                       const y = 200 + Math.sin(rad) * 140;
+                      const isActive = activeArea === i;
                       return (
-                        <g key={i}>
-                          <line x1="200" y1="200" x2={x} y2={y} stroke="#dc2626" strokeWidth="1" opacity="0.2" strokeDasharray="4 4" />
-                          <circle cx={x} cy={y} r="25" fill="white" stroke="#dc2626" strokeWidth="2" opacity="0.8" />
-                          <circle cx={x} cy={y} r="15" fill="#dc2626" opacity="0.1" />
+                        <g key={i} className="transition-all duration-500">
+                          <line x1="200" y1="200" x2={x} y2={y} stroke="#dc2626" strokeWidth={isActive ? "2" : "1"} opacity={isActive ? "0.6" : "0.2"} strokeDasharray={isActive ? "0" : "4 4"} className="transition-all duration-500" />
+                          <circle cx={x} cy={y} r={isActive ? "35" : "25"} fill={isActive ? "#dc2626" : "white"} stroke="#dc2626" strokeWidth={isActive ? "3" : "2"} opacity={isActive ? "1" : "0.8"} className="transition-all duration-500" />
+                          <circle cx={x} cy={y} r={isActive ? "20" : "15"} fill={isActive ? "white" : "#dc2626"} opacity={isActive ? "0.3" : "0.1"} className="transition-all duration-500" />
                         </g>
                       );
                     })}
@@ -176,17 +196,17 @@ export default function HomePage() {
                   onClick={() => setOpenAccordion(openAccordion === i ? null : i)}
                   className="w-full flex items-center gap-4 p-5 text-left hover:bg-white/5 transition-colors"
                 >
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                    openAccordion === i ? 'bg-brand-500/20' : 'bg-white/5'
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
+                    openAccordion === i ? 'bg-brand-500/30 scale-110' : 'bg-white/5'
                   }`}>
-                    <item.icon size={22} className={openAccordion === i ? 'text-brand-400' : 'text-white/50'} />
+                    <item.icon size={22} className={`transition-colors duration-300 ${openAccordion === i ? 'text-brand-400' : 'text-white/50'}`} />
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-white">{item.title}</h3>
                   </div>
                   <div className="text-right shrink-0">
-                    <div className="text-2xl font-bold text-brand-400">{item.stat}</div>
-                    <div className="text-xs text-gray-500">{item.statLabel}</div>
+                    <div className={`text-2xl font-bold transition-colors duration-300 ${openAccordion === i ? 'text-white' : 'text-white/70'}`}>{item.stat}</div>
+                    <div className={`text-xs transition-colors duration-300 ${openAccordion === i ? 'text-brand-400' : 'text-gray-500'}`}>{item.statLabel}</div>
                   </div>
                   <ChevronDown size={20} className={`text-white/30 transition-transform duration-300 shrink-0 ${openAccordion === i ? 'rotate-180' : ''}`} />
                 </button>
@@ -415,7 +435,7 @@ export default function HomePage() {
 // SVG Icons for Application Areas
 function HeatNetworkIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M3 12h4l3-9 4 18 3-9h4" />
     </svg>
   );
@@ -423,7 +443,7 @@ function HeatNetworkIcon() {
 
 function IndustryIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M2 20h20V8l-6 4V8l-6 4V4H2v16z" />
     </svg>
   );
@@ -431,7 +451,7 @@ function IndustryIcon() {
 
 function OilIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M12 2C8 6 6 10 6 14a6 6 0 0 0 12 0c0-4-2-8-6-12z" />
     </svg>
   );
@@ -439,7 +459,7 @@ function OilIcon() {
 
 function HousingIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
@@ -448,7 +468,7 @@ function HousingIcon() {
 
 function EnergyIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
     </svg>
   );
@@ -456,7 +476,7 @@ function EnergyIcon() {
 
 function InfrastructureIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
       <line x1="12" y1="18" x2="12" y2="22" />
       <line x1="8" y1="6" x2="16" y2="6" />
@@ -469,13 +489,13 @@ function InfrastructureIcon() {
 function CategoryIcon({ type }: { type: string }) {
   switch (type) {
     case 'pipe':
-      return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-400"><rect x="2" y="8" width="20" height="8" rx="4" /><line x1="6" y1="8" x2="6" y2="16" /><line x1="18" y1="8" x2="18" y2="16" /></svg>;
+      return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="8" width="20" height="8" rx="4" /><line x1="6" y1="8" x2="6" y2="16" /><line x1="18" y1="8" x2="18" y2="16" /></svg>;
     case 'fitting':
-      return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-400"><path d="M4 16V8h8v8H4z" /><path d="M12 12h8" /><path d="M16 8v8" /></svg>;
+      return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 16V8h8v8H4z" /><path d="M12 12h8" /><path d="M16 8v8" /></svg>;
     case 'odk':
-      return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-400"><circle cx="12" cy="12" r="3" /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" /></svg>;
+      return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3" /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" /></svg>;
     case 'accessory':
-      return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-400"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4" /></svg>;
+      return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4" /></svg>;
     default:
       return null;
   }
