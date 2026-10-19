@@ -121,9 +121,9 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-8 items-center h-full">
+        <div className="grid lg:grid-cols-2 gap-8  h-full">
           {/* Left side — animated text */}
-          <div className="relative z-10">
+          <div className="relative z-10 self-center">
             <div
               key={currentSlide + '-badge'}
               className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 text-brand-700 text-sm font-medium rounded-full mb-5 animate-fade-in-up"
@@ -247,17 +247,17 @@ export default function HeroSection() {
             })}
 
             {/* Navigation buttons */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex w-full pl-20 justify-between gap-3 z-99">
               <button
                 onClick={prevSlide}
                 disabled={isAnimating}
-                className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-700 hover:text-brand-600 hover:border-brand-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-10 h-10 bg-transparent backdrop-blur-[0px] hover:backdrop-blur-xs cursor-pointer rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:text-brand-600 hover:border-brand-300 transition-all opacity-50 hover:opacity-100 disabled:cursor-not-allowed scale-300 "
                 aria-label="Предыдущий слайд"
               >
-                <ArrowLeft size={18} />
+                <ArrowLeft size={10} />
               </button>
               
-              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-gray-100">
+              {/* <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-gray-100">
                 {slides.map((_, i) => (
                   <button
                     key={i}
@@ -275,15 +275,15 @@ export default function HeroSection() {
                     }`}
                   />
                 ))}
-              </div>
+              </div> */}
 
               <button
                 onClick={nextSlide}
                 disabled={isAnimating}
-                className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-700 hover:text-brand-600 hover:border-brand-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-10 h-10 bg-transparent backdrop-blur-[0px]  hover:backdrop-blur-xs cursor-pointer rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:text-brand-600 hover:border-brand-300 transition-all hover:opacity-100 opacity-50 disabled:cursor-not-allowed scale-300 relative -right-10"
                 aria-label="Следующий слайд"
               >
-                <ArrowRight size={18} />
+                <ArrowRight size={10} />
               </button>
             </div>
 

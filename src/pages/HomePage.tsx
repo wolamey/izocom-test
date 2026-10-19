@@ -514,7 +514,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <div className="bg-white rounded-xl p-6">
+              <div className="bg-white rounded-xl p-6 ">
                 <RequestForm compact />
               </div>
             </div>
