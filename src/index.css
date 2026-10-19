@@ -1,7 +1,27 @@
 @import "tailwindcss";
 
+/* Подключение локальных шрифтов */
+@font-face {
+  font-family: 'Title';
+  src: url('./fonts/accid___(Ru)_0.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('./fonts/NotepadFont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
+  --font-title: 'Title', system-ui, sans-serif;
+  --font-main: 'Main', system-ui, sans-serif;
   --font-sans: 'Inter', system-ui, sans-serif;
+
   --color-brand-50: #fef2f2;
   --color-brand-100: #fee2e2;
   --color-brand-200: #fecaca;
@@ -26,11 +46,22 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sans);
+  letter-spacing: 0.0001cap;
+  /* line-height:0.85; */
   color: var(--color-gray-800);
   background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.title {
+  font-family: var(--font-title);
+text-transform: uppercase;
+}
+.subtitle{
+  font-family: var(--font-main);
+  letter-spacing: 0.1cap;
+
 }
 
 /* Custom scrollbar */

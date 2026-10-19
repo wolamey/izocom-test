@@ -81,6 +81,14 @@ export default function Header() {
             <a href="mailto:info@izocomplast.ru" className="hover:text-brand-600 transition-colors">info@izocomplast.ru</a>
             <span>•</span>
             <span>Пн–Пт: 9:00–18:00</span>
+            <span>•</span>
+       <a
+              href="tel:+74951234567"
+              className="hidden md:flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand-600 transition-colors"
+            >
+              <Phone size={16} />
+              <span>+7 (495) 123-45-67</span>
+            </a>
           </div>
         </div>
       </div>
@@ -151,7 +159,7 @@ export default function Header() {
                         }`}
                       >
                         <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-2 min-w-[280px] overflow-hidden">
-                          <div className="absolute top-0 left-8 w-4 h-4 bg-white border-t border-l border-gray-100 rotate-45 -translate-y-2" />
+                          {/* <div className="absolute top-0 left-8 w-4 h-4 bg-white border-t border-l border-gray-100 rotate-45 -translate-y-2" /> */}
                           {item.dropdown!.map((sub, j) => (
                             <Link
                               key={sub.path}
@@ -193,13 +201,7 @@ export default function Header() {
                 )}
               </button>
 
-              <a
-                href="tel:+74951234567"
-                className="hidden md:flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand-600 transition-colors"
-              >
-                <Phone size={16} />
-                <span>+7 (495) 123-45-67</span>
-              </a>
+    
 
               <Link
                 to="/request"

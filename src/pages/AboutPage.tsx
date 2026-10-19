@@ -20,13 +20,13 @@ export default function AboutPage() {
         <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
           <div>
             <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">О компании Изоком Пласт</h1>
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-gray-600  mb-4">
               Компания «Изоком Пласт» — российский производитель предизолированных стальных труб, фасонных изделий и комплектующих для строительства тепловых сетей.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-gray-600  mb-4">
               Мы работаем с 2005 года и за это время поставили продукцию для объектов теплоснабжения в более чем 60 регионах России. Наше производство оснащено современным оборудованием и соответствует требованиям ГОСТ 30732-2006.
             </p>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 ">
               Мы обеспечиваем полный цикл — от подбора продукции и расчёта до доставки и технического сопровождения монтажа.
             </p>
           </div>
