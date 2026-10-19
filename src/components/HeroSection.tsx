@@ -145,7 +145,7 @@ export default function HeroSection() {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-[600px] lg:min-h-[700px] overflow-hidden bg-gradient-to-br from-gray-50 via-white to-brand-50"
+      className="relative min-h-[600px] lg:min-h-[700px] h-[calc(100vh-100px)] overflow-hidden bg-gradient-to-br from-gray-50 via-white to-brand-50"
     >
       {/* Interactive background — fish-eye grid */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -209,8 +209,7 @@ export default function HeroSection() {
             }}
           />
         ))}
-
-        {/* Decorative dots */}
+{/* 
         <div className="absolute inset-0 opacity-20">
           {Array.from({ length: 30 }).map((_, i) => (
             <div
@@ -224,7 +223,7 @@ export default function HeroSection() {
               }}
             />
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Content */}
@@ -343,7 +342,7 @@ export default function HeroSection() {
                     zIndex: pos.zIndex,
                   }}
                 >
-                  <div className={`relative bg-white rounded-2xl p-6 w-80 transition-all duration-500 ${
+                  <div className={`relative bottom- bg-white rounded-2xl p-6 w-80 transition-all duration-500 ${
                     isActive
                       ? 'shadow-2xl shadow-brand-600/20 border-2 border-brand-200'
                       : 'shadow-lg border border-gray-100'
