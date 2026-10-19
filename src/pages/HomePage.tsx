@@ -90,12 +90,12 @@ export default function HomePage() {
             {/* Left — interactive list */}
             <div className="space-y-3">
               {[
-                { title: 'Тепловые сети', desc: 'Горячее водоснабжение и отопление городов и посёлков', icon: <HeatNetworkIcon /> },
-                { title: 'Промышленные трубопроводы', desc: 'Транспорт теплоносителя на промышленных предприятиях', icon: <IndustryIcon /> },
-                { title: 'Нефтегазовая отрасль', desc: 'Трубопроводы с подогревом для вязких сред', icon: <OilIcon /> },
-                { title: 'ЖКХ', desc: 'Замена ветхих сетей с сокращением теплопотерь', icon: <HousingIcon /> },
-                { title: 'Энергетика', desc: 'Паропроводы и трубопроводы ТЭЦ и котельных', icon: <EnergyIcon /> },
-                { title: 'Инфраструктура', desc: 'Сети теплоснабжения для новых жилых комплексов', icon: <InfrastructureIcon /> },
+                { title: 'Тепловые сети', desc: 'Горячее водоснабжение и отопление городов и посёлков', icon: <HeatNetworkIcon />, info: 'Снижение теплопотерь до 40% по сравнению с традиционными методами прокладки' },
+                { title: 'Промышленные трубопроводы', desc: 'Транспорт теплоносителя на промышленных предприятиях', icon: <IndustryIcon />, info: 'Рабочая температура до 140°C, давление до 1.6 МПа' },
+                { title: 'Нефтегазовая отрасль', desc: 'Трубопроводы с подогревом для вязких сред', icon: <OilIcon />, info: 'Системы подогрева для предотвращения застывания нефтепродуктов' },
+                { title: 'ЖКХ', desc: 'Замена ветхих сетей с сокращением теплопотерь', icon: <HousingIcon />, info: 'Срок службы более 30 лет, минимальное обслуживание' },
+                { title: 'Энергетика', desc: 'Паропроводы и трубопроводы ТЭЦ и котельных', icon: <EnergyIcon />, info: 'Высокая энергоэффективность для крупных энергетических объектов' },
+                { title: 'Инфраструктура', desc: 'Сети теплоснабжения для новых жилых комплексов', icon: <InfrastructureIcon />, info: 'Бесканальная прокладка, экономия пространства' },
               ].map((item, i) => (
                 <div
                   key={i}
@@ -137,7 +137,14 @@ export default function HomePage() {
                     {/* Central circle */}
                     <circle cx="200" cy="200" r="60" fill="#dc2626" opacity="0.1" className="transition-all duration-500" />
                     <circle cx="200" cy="200" r="40" fill="#dc2626" opacity="0.2" className="transition-all duration-500" />
-                    <text x="200" y="205" textAnchor="middle" fill="#dc2626" fontSize="14" fontWeight="600" className="transition-all duration-500">ППУ</text>
+                    {/* Text with counter-rotation to stay readable */}
+                    <g style={{
+                      transform: activeArea !== null ? `rotate(${activeArea * 60}deg)` : 'rotate(0deg)',
+                      transformOrigin: '200px 200px',
+                      transition: 'transform 0.7s ease'
+                    }}>
+                      <text x="200" y="205" textAnchor="middle" fill="#dc2626" fontSize="14" fontWeight="600">ППУ</text>
+                    </g>
                     
                     {/* Orbiting circles */}
                     {[0, 60, 120, 180, 240, 300].map((angle, i) => {
@@ -147,13 +154,32 @@ export default function HomePage() {
                       const isActive = activeArea === i;
                       return (
                         <g key={i} className="transition-all duration-500">
-                          <line x1="200" y1="200" x2={x} y2={y} stroke="#dc2626" strokeWidth={isActive ? "2" : "1"} opacity={isActive ? "0.6" : "0.2"} strokeDasharray={isActive ? "0" : "4 4"} className="transition-all duration-500" />
+                          {/* Dashed line - always dashed, but brighter when active */}
+                          <line x1="200" y1="200" x2={x} y2={y} stroke="#dc2626" strokeWidth={isActive ? "2" : "1"} opacity={isActive ? "0.8" : "0.3"} strokeDasharray="6 4" className="transition-all duration-500" />
                           <circle cx={x} cy={y} r={isActive ? "35" : "25"} fill={isActive ? "#dc2626" : "white"} stroke="#dc2626" strokeWidth={isActive ? "3" : "2"} opacity={isActive ? "1" : "0.8"} className="transition-all duration-500" />
                           <circle cx={x} cy={y} r={isActive ? "20" : "15"} fill={isActive ? "white" : "#dc2626"} opacity={isActive ? "0.3" : "0.1"} className="transition-all duration-500" />
                         </g>
                       );
                     })}
                   </svg>
+                  
+                  {/* Info overlay when hovering */}
+                  {activeArea !== null && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-brand-200 max-w-[200px] text-center animate-fade-in">
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          {activeArea !== null && [
+                            'Снижение теплопотерь до 40% по сравнению с традиционными методами прокладки',
+                            'Рабочая температура до 140°C, давление до 1.6 МПа',
+                            'Системы подогрева для предотвращения застывания нефтепродуктов',
+                            'Срок службы более 30 лет, минимальное обслуживание',
+                            'Высокая энергоэффективность для крупных энергетических объектов',
+                            'Бесканальная прокладка, экономия пространства'
+                          ][activeArea]}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="text-center mt-6">
                   <p className="text-sm text-gray-600">6 отраслей — одна технология</p>
@@ -217,6 +243,73 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats showcase — нестандартный черный блок */}
+      <section className="relative bg-gray-900 py-20 lg:py-28 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-600/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-3xl" />
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4">
+              Цифры говорят <span className="text-brand-500">сами за себя</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+              Более 18 лет мы создаём надёжные решения для тепловых сетей России
+            </p>
+          </div>
+
+          {/* Animated stats grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {[
+              { value: '50 000', unit: 'п.м.', label: 'труб произведено в 2024', color: 'from-red-500 to-orange-500' },
+              { value: '60+', unit: '', label: 'регионов поставки', color: 'from-blue-500 to-cyan-500' },
+              { value: '500', unit: '+', label: 'реализованных проектов', color: 'from-green-500 to-emerald-500' },
+              { value: '99.8', unit: '%', label: 'клиентов рекомендуют нас', color: 'from-purple-500 to-pink-500' },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8 hover:border-white/20 transition-all duration-500 overflow-hidden"
+              >
+                {/* Gradient background on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                
+                <div className="relative">
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className={`text-4xl lg:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                      {stat.value}
+                    </span>
+                    {stat.unit && (
+                      <span className="text-2xl lg:text-3xl font-bold text-white/60">{stat.unit}</span>
+                    )}
+                  </div>
+                  <p className="text-sm text-gray-400 leading-relaxed">{stat.label}</p>
+                </div>
+
+                {/* Decorative corner */}
+                <div className={`absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br ${stat.color} rounded-full opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-500`} />
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center gap-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-6 py-3">
+              <span className="text-gray-400 text-sm">Хотите стать частью нашей статистики?</span>
+              <LinkButton
+                to="/request"
+                variant="primary"
+                size="sm"
+                iconRight={<ArrowRight size={16} />}
+              >
+                Начать проект
+              </LinkButton>
+            </div>
           </div>
         </div>
       </section>

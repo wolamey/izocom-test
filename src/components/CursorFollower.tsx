@@ -71,9 +71,9 @@ export default function CursorFollower() {
           className="w-[500px] h-[500px] rounded-full"
           style={{
             background: `radial-gradient(circle at center,
-              rgba(220, 38, 38, 0.25) 0%,
-              rgba(220, 38, 38, 0.15) 25%,
-              rgba(220, 38, 38, 0.05) 50%,
+              rgba(220, 38, 38, 0.12) 0%,
+              rgba(220, 38, 38, 0.06) 25%,
+              rgba(220, 38, 38, 0.02) 50%,
               transparent 75%
             )`,
             filter: 'blur(40px)',
@@ -82,7 +82,7 @@ export default function CursorFollower() {
         <div
           className="absolute top-1/2 left-1/2 w-[200px] h-[200px] rounded-full -translate-x-1/2 -translate-y-1/2"
           style={{
-            background: 'radial-gradient(circle, rgba(255,100,100,0.3) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, rgba(255,100,100,0.15) 0%, transparent 60%)',
             filter: 'blur(20px)',
           }}
         />

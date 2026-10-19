@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Zap } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Zap } from 'lucide-react';
 import { LinkButton } from './ui/Button';
 import ProductImage from './ProductImage';
 
@@ -74,6 +74,13 @@ export default function HeroSection() {
     if (isAnimating) return;
     setIsAnimating(true);
     setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setTimeout(() => setIsAnimating(false), 1000);
+  };
+
+  const prevSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     setTimeout(() => setIsAnimating(false), 1000);
   };
 
@@ -239,25 +246,53 @@ export default function HeroSection() {
               );
             })}
 
-            {/* Slide indicators */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-gray-100">
-              {slides.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => {
-                    if (!isAnimating) {
-                      setIsAnimating(true);
-                      setCurrentSlide(i);
-                      setTimeout(() => setIsAnimating(false), 1000);
-                    }
-                  }}
-                  className={`transition-all duration-300 rounded-full ${
-                    i === currentSlide
-                      ? 'w-8 h-2 bg-brand-600'
-                      : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
+            {/* Navigation buttons */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3">
+              <button
+                onClick={prevSlide}
+                disabled={isAnimating}
+                className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-700 hover:text-brand-600 hover:border-brand-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Предыдущий слайд"
+              >
+                <ArrowLeft size={18} />
+              </button>
+              
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-gray-100">
+                {slides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      if (!isAnimating) {
+                        setIsAnimating(true);
+                        setCurrentSlide(i);
+                        setTimeout(() => setIsAnimating(false), 1000);
+                      }
+                    }}
+                    className={`transition-all duration-300 rounded-full ${
+                      i === currentSlide
+                        ? 'w-8 h-2 bg-brand-600'
+                        : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={nextSlide}
+                disabled={isAnimating}
+                className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-700 hover:text-brand-600 hover:border-brand-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Следующий слайд"
+              >
+                <ArrowRight size={18} />
+              </button>
+            </div>
+
+            {/* Vertical progress bar */}
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 w-1 h-32 bg-gray-200 rounded-full overflow-hidden">
+              <div 
+                className="w-full bg-brand-600 rounded-full transition-all duration-300"
+                style={{ height: `${((currentSlide + 1) / slides.length) * 100}%` }}
+              />
             </div>
           </div>
         </div>
