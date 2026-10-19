@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+.git
+.github
+.agents
+.codex
+.aws
+.env
+.env.*
+*.log
+README.md
