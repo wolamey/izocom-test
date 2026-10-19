@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Clock, Truck, Award, Factory, ChevronRight, Zap, ThermometerSun, CheckCircle2, Sparkles, Layers, Gauge, CircleDot } from 'lucide-react';
+import { ArrowRight, Shield, Clock, Truck, Award, Factory, Zap, ThermometerSun, CheckCircle2, Sparkles, Layers, ChevronDown, MapPin, Phone, Mail, Globe, Building2 } from 'lucide-react';
 import { categories } from '../data/products';
 import ProductImage from '../components/ProductImage';
 import RequestForm from '../components/RequestForm';
 import HeroSection from '../components/HeroSection';
-import { LinkButton, Button } from '../components/ui/Button';
+import { LinkButton } from '../components/ui/Button';
+import { useState } from 'react';
 
 export default function HomePage() {
+  const [openAccordion, setOpenAccordion] = useState<number | null>(0);
+
   return (
     <div>
       {/* Hero */}
@@ -14,11 +17,9 @@ export default function HomePage() {
 
       {/* Categories — чёрный фон */}
       <section className="relative bg-gray-900 py-20 lg:py-28 overflow-hidden">
-        {/* Background decoration */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-600/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-600/5 rounded-full blur-3xl" />
-          {/* Grid lines */}
           <div className="absolute inset-0 opacity-5" style={{
             backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
             backgroundSize: '60px 60px'
@@ -52,13 +53,11 @@ export default function HomePage() {
                 key={cat.id}
                 to={`/products/${cat.id}`}
                 className="group relative bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-500 overflow-hidden"
-                style={{ animationDelay: `${i * 100}ms` }}
               >
-                {/* Hover glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-600/0 to-brand-600/0 group-hover:from-brand-600/10 group-hover:to-transparent transition-all duration-500" />
 
                 <div className="relative">
-                  <div className="w-14 h-14 bg-white/5 group-hover:bg-brand-500/20 rounded-2xl flex items-center justify-center mb-5 transition-all duration-500">
+                  <div className="w-14 h-14 bg-white/10 group-hover:bg-brand-500/30 rounded-2xl flex items-center justify-center mb-5 transition-all duration-500">
                     <CategoryIcon type={cat.icon} />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-brand-400 transition-colors">{cat.name}</h3>
@@ -76,30 +75,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Application areas */}
-      <section className="py-16 lg:py-20 bg-white">
+      {/* Application areas — интерактивный список с SVG */}
+      <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Области применения</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: 'Тепловые сети', desc: 'Горячее водоснабжение и отопление городов и посёлков', icon: '🏙️' },
-              { title: 'Промышленные трубопроводы', desc: 'Транспорт теплоносителя на промышленных предприятиях', icon: '🏭' },
-              { title: 'Нефтегазовая отрасль', desc: 'Трубопроводы с подогревом для вязких сред', icon: '⛽' },
-              { title: 'ЖКХ', desc: 'Замена ветхих сетей с сокращением теплопотерь', icon: '🏠' },
-              { title: 'Энергетика', desc: 'Паропроводы и трубопроводы ТЭЦ и котельных', icon: '⚡' },
-              { title: 'Инфраструктура', desc: 'Сети теплоснабжения для новых жилых комплексов', icon: '🏗️' },
-            ].map((item, i) => (
-              <div key={i} className="bg-gray-50 rounded-xl p-6 border border-gray-100 hover:shadow-md hover:border-brand-100 transition-all">
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-500">{item.desc}</p>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">Области применения</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">Наша продукция используется в различных отраслях промышленности и ЖКХ</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            {/* Left — interactive list */}
+            <div className="space-y-3">
+              {[
+                { title: 'Тепловые сети', desc: 'Горячее водоснабжение и отопление городов и посёлков', icon: <HeatNetworkIcon /> },
+                { title: 'Промышленные трубопроводы', desc: 'Транспорт теплоносителя на промышленных предприятиях', icon: <IndustryIcon /> },
+                { title: 'Нефтегазовая отрасль', desc: 'Трубопроводы с подогревом для вязких сред', icon: <OilIcon /> },
+                { title: 'ЖКХ', desc: 'Замена ветхих сетей с сокращением теплопотерь', icon: <HousingIcon /> },
+                { title: 'Энергетика', desc: 'Паропроводы и трубопроводы ТЭЦ и котельных', icon: <EnergyIcon /> },
+                { title: 'Инфраструктура', desc: 'Сети теплоснабжения для новых жилых комплексов', icon: <InfrastructureIcon /> },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="group flex items-start gap-4 p-5 bg-gray-50 hover:bg-brand-50 border border-gray-100 hover:border-brand-200 rounded-xl transition-all duration-300 cursor-pointer"
+                >
+                  <div className="w-12 h-12 bg-white group-hover:bg-brand-100 rounded-xl flex items-center justify-center shrink-0 transition-colors">
+                    {item.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-900 group-hover:text-brand-600 transition-colors mb-1">{item.title}</h3>
+                    <p className="text-sm text-gray-500">{item.desc}</p>
+                  </div>
+                  <ArrowRight size={18} className="text-gray-300 group-hover:text-brand-600 group-hover:translate-x-1 transition-all shrink-0 mt-1" />
+                </div>
+              ))}
+            </div>
+
+            {/* Right — visual */}
+            <div className="relative lg:sticky lg:top-32">
+              <div className="bg-gradient-to-br from-brand-50 to-blue-50 rounded-2xl p-8 border border-gray-100">
+                <div className="aspect-square max-w-md mx-auto relative">
+                  <svg viewBox="0 0 400 400" className="w-full h-full">
+                    {/* Central circle */}
+                    <circle cx="200" cy="200" r="60" fill="#dc2626" opacity="0.1" />
+                    <circle cx="200" cy="200" r="40" fill="#dc2626" opacity="0.2" />
+                    <text x="200" y="205" textAnchor="middle" fill="#dc2626" fontSize="14" fontWeight="600">ППУ</text>
+                    
+                    {/* Orbiting circles */}
+                    {[0, 60, 120, 180, 240, 300].map((angle, i) => {
+                      const rad = (angle * Math.PI) / 180;
+                      const x = 200 + Math.cos(rad) * 140;
+                      const y = 200 + Math.sin(rad) * 140;
+                      return (
+                        <g key={i}>
+                          <line x1="200" y1="200" x2={x} y2={y} stroke="#dc2626" strokeWidth="1" opacity="0.2" strokeDasharray="4 4" />
+                          <circle cx={x} cy={y} r="25" fill="white" stroke="#dc2626" strokeWidth="2" opacity="0.8" />
+                          <circle cx={x} cy={y} r="15" fill="#dc2626" opacity="0.1" />
+                        </g>
+                      );
+                    })}
+                  </svg>
+                </div>
+                <div className="text-center mt-6">
+                  <p className="text-sm text-gray-600">6 отраслей — одна технология</p>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Advantages — чёрный фон */}
+      {/* Advantages — аккордеон */}
       <section className="relative bg-gray-900 py-20 lg:py-28 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-600/5 rounded-full blur-3xl" />
@@ -113,21 +158,42 @@ export default function HomePage() {
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">Почему выбирают нас</h2>
             <p className="text-gray-400 max-w-lg mx-auto">Качество, надёжность и комплексный подход к каждому проекту</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <div className="max-w-3xl mx-auto space-y-3">
             {[
-              { icon: Shield, title: 'Качество по ГОСТ', desc: 'Вся продукция сертифицирована и соответствует ГОСТ 30732-2006', color: 'from-blue-500/20 to-blue-500/5' },
-              { icon: Clock, title: '30 лет эксплуатации', desc: 'Подтверждённый срок службы предизолированных труб', color: 'from-green-500/20 to-green-500/5' },
-              { icon: Truck, title: 'Доставка по РФ', desc: 'Отгрузка со склада в Москве, доставка в любой регион', color: 'from-amber-500/20 to-amber-500/5' },
-              { icon: Award, title: 'Техподдержка', desc: 'Консультации проектировщикам и помощь в подборе', color: 'from-purple-500/20 to-purple-500/5' },
+              { icon: Shield, title: 'Качество по ГОСТ', desc: 'Вся продукция сертифицирована и соответствует ГОСТ 30732-2006. Многоступенчатый контроль качества на каждом этапе производства.', stat: '100%', statLabel: 'соответствие ГОСТ' },
+              { icon: Clock, title: '30 лет эксплуатации', desc: 'Подтверждённый срок службы предизолированных труб. Снижение аварийности тепловых сетей до 4 раз.', stat: '30+', statLabel: 'лет службы' },
+              { icon: Truck, title: 'Доставка по РФ', desc: 'Отгрузка со склада в Москве, доставка в любой регион России. Собственный автопарк и логистические партнёры.', stat: '60+', statLabel: 'регионов' },
+              { icon: Award, title: 'Техподдержка', desc: 'Консультации проектировщикам и помощь в подборе продукции. Бесплатный расчёт и подготовка документации.', stat: '24/7', statLabel: 'поддержка' },
             ].map((item, i) => (
-              <div key={i} className="relative group">
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl`} />
-                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-white/20 transition-all duration-300">
-                  <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <item.icon size={24} className="text-brand-400" />
+              <div
+                key={i}
+                className={`bg-white/5 border rounded-xl overflow-hidden transition-all duration-300 ${
+                  openAccordion === i ? 'border-brand-500/50' : 'border-white/10'
+                }`}
+              >
+                <button
+                  onClick={() => setOpenAccordion(openAccordion === i ? null : i)}
+                  className="w-full flex items-center gap-4 p-5 text-left hover:bg-white/5 transition-colors"
+                >
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                    openAccordion === i ? 'bg-brand-500/20' : 'bg-white/5'
+                  }`}>
+                    <item.icon size={22} className={openAccordion === i ? 'text-brand-400' : 'text-white/50'} />
                   </div>
-                  <h3 className="font-semibold text-white mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-400">{item.desc}</p>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-white">{item.title}</h3>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <div className="text-2xl font-bold text-brand-400">{item.stat}</div>
+                    <div className="text-xs text-gray-500">{item.statLabel}</div>
+                  </div>
+                  <ChevronDown size={20} className={`text-white/30 transition-transform duration-300 shrink-0 ${openAccordion === i ? 'rotate-180' : ''}`} />
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ${openAccordion === i ? 'max-h-40' : 'max-h-0'}`}>
+                  <div className="px-5 pb-5 pl-20">
+                    <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -135,8 +201,61 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* About us with YouTube */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 text-brand-700 text-sm font-medium rounded-full mb-4">
+                <Building2 size={14} />
+                О компании
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Изоком Пласт — надёжный партнёр</h2>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                Компания «Изоком Пласт» — российский производитель предизолированных стальных труб, фасонных изделий и комплектующих для строительства тепловых сетей.
+              </p>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Мы работаем с 2005 года и за это время поставили продукцию для объектов теплоснабжения в более чем 60 регионах России. Наше производство оснащено современным оборудованием и соответствует требованиям ГОСТ 30732-2006.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <LinkButton
+                  to="/about"
+                  variant="primary"
+                  size="md"
+                  iconRight={<ArrowRight size={16} />}
+                >
+                  Подробнее о компании
+                </LinkButton>
+                <LinkButton
+                  to="/contacts"
+                  variant="outline"
+                  size="md"
+                >
+                  Связаться с нами
+                </LinkButton>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/kDR3dP0Rgfc?si=RBBNHx1I_PXSepnu"
+                  title="Изоком Пласт — видео о компании"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Production */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -168,30 +287,91 @@ export default function HomePage() {
                 Подробнее о производстве
               </LinkButton>
             </div>
-            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+            <div className="bg-white rounded-2xl p-6 border border-gray-100">
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white rounded-xl p-6 text-center border border-gray-100">
+                <div className="bg-gray-50 rounded-xl p-6 text-center">
                   <Factory size={32} className="mx-auto text-brand-600 mb-2" />
                   <div className="text-2xl font-bold text-gray-900">5000+</div>
                   <div className="text-sm text-gray-500">м² производства</div>
                 </div>
-                <div className="bg-white rounded-xl p-6 text-center border border-gray-100">
+                <div className="bg-gray-50 rounded-xl p-6 text-center">
                   <ThermometerSun size={32} className="mx-auto text-blue-600 mb-2" />
                   <div className="text-2xl font-bold text-gray-900">50 000</div>
                   <div className="text-sm text-gray-500">п.м. в год</div>
                 </div>
-                <div className="bg-white rounded-xl p-6 text-center border border-gray-100">
+                <div className="bg-gray-50 rounded-xl p-6 text-center">
                   <Award size={32} className="mx-auto text-green-600 mb-2" />
                   <div className="text-2xl font-bold text-gray-900">18</div>
                   <div className="text-sm text-gray-500">лет на рынке</div>
                 </div>
-                <div className="bg-white rounded-xl p-6 text-center border border-gray-100">
+                <div className="bg-gray-50 rounded-xl p-6 text-center">
                   <Truck size={32} className="mx-auto text-amber-600 mb-2" />
                   <div className="text-2xl font-bold text-gray-900">60+</div>
                   <div className="text-sm text-gray-500">регионов доставки</div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* АПТС — член ассоциации */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-brand-50 to-white rounded-2xl p-8 lg:p-12 border border-brand-100">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-100 text-brand-700 text-sm font-medium rounded-full mb-4">
+                  <Award size={14} />
+                  Членство в ассоциации
+                </div>
+                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                  ООО "Изоком Пласт" — член Ассоциации производителей трубопроводных систем
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  Мы являемся активным участником профессионального сообщества, что подтверждает наш статус надёжного производителя.
+                </p>
+                <a
+                  href="https://rapts.ru/tpost/sg46tkjm71-v-apts-vstupili-9-novih-organizatsii"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-brand-600 font-medium hover:gap-3 transition-all"
+                >
+                  Подробнее на сайте АПТС <ArrowRight size={16} />
+                </a>
+              </div>
+              <div className="flex justify-center lg:justify-end">
+                <div className="w-48 h-48 bg-white rounded-2xl shadow-lg flex items-center justify-center border border-gray-100">
+                  <div className="text-center">
+                    <div className="w-20 h-20 mx-auto mb-3 bg-brand-50 rounded-full flex items-center justify-center">
+                      <Award size={32} className="text-brand-600" />
+                    </div>
+                    <div className="text-sm font-semibold text-gray-900">АПТС</div>
+                    <div className="text-xs text-gray-500">Ассоциация производителей<br/>трубопроводных систем</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Наши представительства */}
+      <section className="py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 text-brand-700 text-sm font-medium rounded-full mb-4">
+              <Globe size={14} />
+              География
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">Наши представительства</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">Официальные представители завода на территории Российской Федерации</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {dealers.map((dealer, i) => (
+              <DealerCard key={i} dealer={dealer} />
+            ))}
           </div>
         </div>
       </section>
@@ -232,6 +412,60 @@ export default function HomePage() {
   );
 }
 
+// SVG Icons for Application Areas
+function HeatNetworkIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+      <path d="M3 12h4l3-9 4 18 3-9h4" />
+    </svg>
+  );
+}
+
+function IndustryIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+      <path d="M2 20h20V8l-6 4V8l-6 4V4H2v16z" />
+    </svg>
+  );
+}
+
+function OilIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+      <path d="M12 2C8 6 6 10 6 14a6 6 0 0 0 12 0c0-4-2-8-6-12z" />
+    </svg>
+  );
+}
+
+function HousingIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  );
+}
+
+function EnergyIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  );
+}
+
+function InfrastructureIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-600">
+      <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+      <line x1="12" y1="18" x2="12" y2="22" />
+      <line x1="8" y1="6" x2="16" y2="6" />
+      <line x1="8" y1="10" x2="16" y2="10" />
+      <line x1="8" y1="14" x2="16" y2="14" />
+    </svg>
+  );
+}
+
 function CategoryIcon({ type }: { type: string }) {
   switch (type) {
     case 'pipe':
@@ -245,4 +479,162 @@ function CategoryIcon({ type }: { type: string }) {
     default:
       return null;
   }
+}
+
+// Dealer data
+const dealers = [
+  {
+    name: 'АПРОМ',
+    description: 'ООО "АПРОМ" - официальный представитель завода на территории РФ',
+    phone: '8(473)229-83-00',
+    mobile: '8(929)009-21-00',
+    email: 'sale@apromvrn.ru',
+    website: 'https://apromvrn.ru/',
+    address: '394019, Россия, г. Воронеж, ул. Солнечная, д. 7Д, офис 25',
+  },
+  {
+    name: 'РЕГИОН СЕРВИС',
+    description: 'ООО "Регион Сервис" - официальный представитель завода на территории РФ',
+    phone: '+7(473) 290-34-26',
+    mobile: '+7(930) 400-65-56',
+    email: 'office@regionservis-vrn.ru',
+    website: 'https://regionservis-vrn.ru/',
+    address: 'Россия, 394088, г.Воронеж, ул.Антонова-Овсеенко, д.35В, офис 4',
+  },
+  {
+    name: 'Гибкие инженерные системы',
+    description: 'Представительство в Москве - ООО «Гибкие инженерные системы». Официальный представитель завода на территории Российской Федерации',
+    phone: '8 (495) 147 44 85',
+    mobile: '8 909 960 22 37',
+    email: 'info@groupgis.ru',
+    website: 'https://groupgis.ru/',
+    address: '143082, Московская область, г.о. Одинцовский, д. Раздоры тер. Рублево-Успенское шоссе, км. 1-й, д.1, оф.206',
+  },
+  {
+    name: 'КОМПЛЕКСНОЕ СНАБЖЕНИЕ',
+    description: 'ООО "КОМПЛЕКСНОЕ СНАБЖЕНИЕ" - официальный представитель завода на территории РФ',
+    phone: '8-800-550-17-56',
+    email: 'sales@intsupply.ru',
+    website: 'http://intsupply.ru/',
+    address: '197341, город Санкт-Петербург, Коломяжский пр-кт, д. 28 к. 3 литер а, помещ. 19н, кабинет 7',
+  },
+  {
+    name: 'ДИНАМИКА',
+    description: 'Инженерные системы: тепло и вода с комфортом',
+    phone: '+7912 241 2346',
+    email: 'dinamika.teplo@gmail.com',
+    address: '620023 г. Екатеринбург, ул. Зимняя, 22',
+  },
+  {
+    name: 'ВАРМОКОМ',
+    description: 'Компания ВАРМОКОМ является официальным представителем производителя гибких предварительно изолированных труб (ГПИ-труб) ООО "Изоком Пласт" в Тверской области и на территории Российской Федерации.',
+    phone: '+7 920 689 29 69',
+    email: 'warmocom@yandex.ru',
+    website: 'https://warmocom.ru/',
+    address: 'Российская Федерация, г. Тверь, ул. Ерофеева, д. 7, корп. 2, кв. 21',
+  },
+  {
+    name: 'КОНЕКС',
+    description: 'ООО "КОНЕКС"',
+    email: 'konexspb@gmail.com',
+    website: 'http://konex.spb.ru',
+    address: '196066, г. Санкт-Петербург, Московский пр-кт, д.212, литера А, помещение 27, офис 6033-1',
+  },
+  {
+    name: 'ЭНЕРГОСИСТЕМА',
+    phone: '+7 (994) 1080108',
+    phone2: '+7 (423) 2712668',
+    email: 'energydv@bk.ru',
+    website: 'https://izocomflex.ru/',
+    address: '690105 г. Владивосток ул. Полковника Фесюна 20, 211',
+  },
+  {
+    name: 'Компания СпецПоток',
+    description: 'ООО "СпецПоток" - официальный представитель завода на территории РФ',
+    phone: '+7 (952) 206-01-61',
+    mobile: '+7 (981) 201-01-03',
+    email: 'info@specpotok.com',
+    website: 'https://specpotok.com/',
+    address: 'РФ, 199406, Санкт-Петербург, улица Опочинина, дом 16, литера А, помещение 6-Н, кабинет №30',
+  },
+  {
+    name: 'ТВК Пластик',
+    description: 'Официальный представитель завода на территории Российской Федерации',
+    email: 'tvkplastic@mail.ru',
+    website: 'https://tvkplastic.ru/',
+    address: '121351, г. Москва, ул. Екатерины Будановой, д. 1',
+    hours: 'Пн–Пт: 8:00 – 17:00',
+  },
+];
+
+interface Dealer {
+  name: string;
+  description?: string;
+  phone?: string;
+  phone2?: string;
+  mobile?: string;
+  email?: string;
+  website?: string;
+  address: string;
+  hours?: string;
+}
+
+function DealerCard({ dealer }: { dealer: Dealer }) {
+  return (
+    <div className="bg-white rounded-xl p-6 border border-gray-100 hover:border-brand-200 hover:shadow-lg transition-all duration-300">
+      <h3 className="text-lg font-bold text-gray-900 mb-2">{dealer.name}</h3>
+      {dealer.description && <p className="text-sm text-gray-600 mb-4">{dealer.description}</p>}
+      
+      <div className="space-y-2 text-sm">
+        {dealer.phone && (
+          <div className="flex items-center gap-2 text-gray-700">
+            <Phone size={14} className="text-brand-600 shrink-0" />
+            <a href={`tel:${dealer.phone.replace(/\s/g, '')}`} className="hover:text-brand-600 transition-colors">{dealer.phone}</a>
+          </div>
+        )}
+        {dealer.phone2 && (
+          <div className="flex items-center gap-2 text-gray-700">
+            <Phone size={14} className="text-brand-600 shrink-0" />
+            <a href={`tel:${dealer.phone2.replace(/\s/g, '')}`} className="hover:text-brand-600 transition-colors">{dealer.phone2}</a>
+          </div>
+        )}
+        {dealer.mobile && (
+          <div className="flex items-center gap-2 text-gray-700">
+            <Phone size={14} className="text-brand-600 shrink-0" />
+            <span>{dealer.mobile}</span>
+          </div>
+        )}
+        {dealer.email && (
+          <div className="flex items-center gap-2 text-gray-700">
+            <Mail size={14} className="text-brand-600 shrink-0" />
+            <a href={`mailto:${dealer.email}`} className="hover:text-brand-600 transition-colors">{dealer.email}</a>
+          </div>
+        )}
+        {dealer.website && (
+          <div className="flex items-center gap-2 text-gray-700">
+            <Globe size={14} className="text-brand-600 shrink-0" />
+            <a href={dealer.website} target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 transition-colors">{dealer.website.replace('https://', '').replace('http://', '')}</a>
+          </div>
+        )}
+        <div className="flex items-start gap-2 text-gray-700 pt-2">
+          <MapPin size={14} className="text-brand-600 shrink-0 mt-0.5" />
+          <span className="text-xs">{dealer.address}</span>
+        </div>
+        {dealer.hours && (
+          <div className="text-xs text-gray-500 pt-1">{dealer.hours}</div>
+        )}
+      </div>
+      
+      {dealer.website && (
+        <a
+          href={dealer.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 mt-4 text-sm text-brand-600 font-medium hover:gap-2 transition-all"
+        >
+          Подробнее <ArrowRight size={14} />
+        </a>
+      )}
+    </div>
+  );
 }

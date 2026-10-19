@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Zap } from 'lucide-react';
-import { LinkButton, Button } from './ui/Button';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowRight, Zap } from 'lucide-react';
+import { LinkButton } from './ui/Button';
 import ProductImage from './ProductImage';
 
 interface Slide {
@@ -62,14 +61,6 @@ const slides: Slide[] = [
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [blobPositions, setBlobPositions] = useState([
-    { x: 20, y: 30, vx: 0.3, vy: 0.2 },
-    { x: 70, y: 60, vx: -0.2, vy: 0.3 },
-    { x: 50, y: 80, vx: 0.4, vy: -0.2 },
-  ]);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const animFrameRef = useRef<number>();
 
   // Auto-rotate slides
   useEffect(() => {
@@ -86,54 +77,23 @@ export default function HeroSection() {
     setTimeout(() => setIsAnimating(false), 1000);
   };
 
-  // Mouse tracking for fish-eye effect
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setMousePos({ x, y });
-  }, []);
-
-  // Animate blobs
-  useEffect(() => {
-    const animate = () => {
-      setBlobPositions(prev => prev.map(blob => {
-        let newX = blob.x + blob.vx;
-        let newY = blob.y + blob.vy;
-        let newVx = blob.vx;
-        let newVy = blob.vy;
-
-        if (newX <= 0 || newX >= 100) newVx = -newVx;
-        if (newY <= 0 || newY >= 100) newVy = -newVy;
-
-        return { x: newX, y: newY, vx: newVx, vy: newVy };
-      }));
-      animFrameRef.current = requestAnimationFrame(animate);
-    };
-    animFrameRef.current = requestAnimationFrame(animate);
-    return () => {
-      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
-    };
-  }, []);
-
   const slide = slides[currentSlide];
 
   // Calculate position on semicircle for right side
   const getSlidePosition = (index: number) => {
     const total = slides.length;
     const diff = ((index - currentSlide + total) % total);
-    
+
     // Semicircle trajectory — from bottom-left to top-right
     const angle = (diff / total) * Math.PI;
-    const radiusX = 40; // horizontal radius in %
-    const radiusY = 35; // vertical radius in %
+    const radiusX = 40;
+    const radiusY = 35;
     const centerX = 50;
     const centerY = 55;
-    
+
     const x = centerX + Math.cos(angle - Math.PI / 2) * radiusX;
     const y = centerY - Math.sin(angle - Math.PI / 2) * radiusY;
-    
+
     const scale = diff === 0 ? 1 : diff === 1 || diff === total - 1 ? 0.75 : 0.55;
     const opacity = diff === 0 ? 1 : diff === 1 || diff === total - 1 ? 0.6 : 0.25;
     const zIndex = diff === 0 ? 30 : diff === 1 || diff === total - 1 ? 20 : 10;
@@ -142,99 +102,24 @@ export default function HeroSection() {
   };
 
   return (
-    <section
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      className="relative min-h-[600px] lg:min-h-[700px] overflow-hidden bg-gradient-to-br from-gray-50 via-white to-brand-50"
-    >
-      {/* Interactive background — fish-eye grid */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Animated grid with fish-eye distortion */}
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-          transform: `perspective(1000px) rotateX(${(mousePos.y - 50) * 0.02}deg) rotateY(${(mousePos.x - 50) * 0.02}deg)`,
-          transition: 'transform 0.3s ease-out',
-        }} />
-
-        {/* Fish-eye lens effect */}
-        <div
-          className="absolute w-[500px] h-[500px] rounded-full transition-all duration-200 ease-out"
-          style={{
-            left: `${mousePos.x}%`,
-            top: `${mousePos.y}%`,
-            transform: 'translate(-50%, -50%)',
-            background: `
-              radial-gradient(circle at center,
-                rgba(220, 38, 38, 0.12) 0%,
-                rgba(220, 38, 38, 0.08) 20%,
-                rgba(220, 38, 38, 0.04) 40%,
-                transparent 70%
-              )
-            `,
-            filter: 'blur(30px)',
-            boxShadow: 'inset 0 0 100px rgba(220, 38, 38, 0.1)',
-          }}
-        />
-
-        {/* Secondary lens */}
-        <div
-          className="absolute w-[300px] h-[300px] rounded-full transition-all duration-300 ease-out"
-          style={{
-            left: `${mousePos.x}%`,
-            top: `${mousePos.y}%`,
-            transform: 'translate(-50%, -50%) scale(1.5)',
-            background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 50%)',
-            filter: 'blur(20px)',
-            mixBlendMode: 'overlay',
-          }}
-        />
-
-        {/* Red blur circles — crawling */}
-        {blobPositions.map((blob, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full transition-all duration-1000 ease-out"
-            style={{
-              left: `${blob.x}%`,
-              top: `${blob.y}%`,
-              width: `${250 + i * 50}px`,
-              height: `${250 + i * 50}px`,
-              transform: 'translate(-50%, -50%)',
-              background: `radial-gradient(circle, rgba(220, 38, 38, ${0.18 - i * 0.04}) 0%, rgba(220, 38, 38, 0.05) 40%, transparent 70%)`,
-              filter: 'blur(60px)',
-            }}
-          />
-        ))}
-
-        {/* Decorative dots */}
-        <div className="absolute inset-0 opacity-20">
-          {Array.from({ length: 30 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-brand-600 rounded-full animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${i * 0.1}s`,
-                animationDuration: `${2 + Math.random() * 2}s`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
+    <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-brand-50" style={{ height: 'calc(100vh - 116px)', minHeight: '600px' }}>
+      {/* Subtle background grid */}
+      <div className="absolute inset-0 pointer-events-none opacity-50" style={{
+        backgroundImage: `
+          linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px',
+      }} />
 
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[500px]">
+      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-8 items-center h-full">
           {/* Left side — animated text */}
           <div className="relative z-10">
             <div
               key={currentSlide + '-badge'}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 text-brand-700 text-sm font-medium rounded-full mb-6 animate-fade-in-up"
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 text-brand-700 text-sm font-medium rounded-full mb-5 animate-fade-in-up"
             >
               <Zap size={14} />
               Производство с 2005 года
@@ -264,7 +149,7 @@ export default function HeroSection() {
 
             <p
               key={currentSlide + '-subtitle'}
-              className="text-xl text-gray-600 mb-3 animate-fade-in-up"
+              className="text-xl text-gray-600 mb-2 animate-fade-in-up"
               style={{ animationDelay: '300ms' }}
             >
               {slide.subtitle}
@@ -272,7 +157,7 @@ export default function HeroSection() {
 
             <p
               key={currentSlide + '-desc'}
-              className="text-lg text-gray-500 mb-8 leading-relaxed max-w-lg animate-fade-in-up"
+              className="text-lg text-gray-500 mb-6 leading-relaxed max-w-lg animate-fade-in-up"
               style={{ animationDelay: '400ms' }}
             >
               {slide.description}
@@ -299,23 +184,10 @@ export default function HeroSection() {
                 Запросить расчёт
               </LinkButton>
             </div>
-
-            <div
-              key={currentSlide + '-checks'}
-              className="mt-8 flex items-center gap-6 text-sm text-gray-500 animate-fade-in-up"
-              style={{ animationDelay: '600ms' }}
-            >
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 size={16} className="text-green-500" /> ГОСТ 30732-2006
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 size={16} className="text-green-500" /> Доставка по РФ
-              </span>
-            </div>
           </div>
 
           {/* Right side — semicircle slider */}
-          <div className="hidden lg:block relative h-[550px]">
+          <div className="hidden lg:block relative h-full max-h-[600px]">
             {/* Semicircle track */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.1 }}>
               <path
@@ -343,23 +215,22 @@ export default function HeroSection() {
                     zIndex: pos.zIndex,
                   }}
                 >
-                  <div className={`relative bg-white rounded-2xl p-6 w-80 transition-all duration-500 ${
+                  <div className={`relative bg-white rounded-2xl p-5 w-72 transition-all duration-500 ${
                     isActive
                       ? 'shadow-2xl shadow-brand-600/20 border-2 border-brand-200'
                       : 'shadow-lg border border-gray-100'
                   }`}>
-                    {/* Active indicator */}
                     {isActive && (
-                      <div className="absolute -top-2 -right-2 w-4 h-4 bg-brand-600 rounded-full animate-pulse" />
+                      <div className="absolute -top-2 -right-2 w-3 h-3 bg-brand-600 rounded-full animate-pulse" />
                     )}
                     <ProductImage type={s.image} className="aspect-[4/3] rounded-xl" />
-                    <div className="mt-4 grid grid-cols-3 gap-2">
+                    <div className="mt-3 grid grid-cols-3 gap-2">
                       {s.stats.map((stat, j) => (
                         <div key={j} className={`text-center p-2 rounded-lg transition-colors ${
                           isActive ? 'bg-brand-50' : 'bg-gray-50'
                         }`}>
-                          <div className={`text-lg font-bold transition-colors ${isActive ? 'text-brand-600' : 'text-gray-700'}`}>{stat.value}</div>
-                          <div className="text-xs text-gray-500">{stat.label}</div>
+                          <div className={`text-base font-bold transition-colors ${isActive ? 'text-brand-600' : 'text-gray-700'}`}>{stat.value}</div>
+                          <div className="text-[10px] text-gray-500">{stat.label}</div>
                         </div>
                       ))}
                     </div>

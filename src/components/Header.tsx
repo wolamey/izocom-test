@@ -146,7 +146,7 @@ export default function Header() {
                     {/* Dropdown */}
                     {hasDropdown && (
                       <div
-                        className={`absolute top-full left-0 pt-2 transition-all duration-300 ${
+                        className={`absolute top-full left-0 pt-2 transition-all duration-300 z-50 ${
                           isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                         }`}
                       >
@@ -222,7 +222,7 @@ export default function Header() {
 
         {/* Search overlay — красивая анимация */}
         <div
-          className={`absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg border-b border-gray-100 overflow-hidden transition-all duration-500 ${
+          className={`absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg border-b border-gray-100 overflow-hidden transition-all duration-500 z-40 ${
             searchOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
