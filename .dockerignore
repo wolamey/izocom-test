@@ -10,3 +10,7 @@ build
 .env.*
 *.log
 README.md
+.gitignore
+.vscode
+.idea
+coverage
