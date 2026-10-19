@@ -48,7 +48,7 @@ html {
 body {
   font-family: var(--font-sans);
   letter-spacing: 0.0001cap;
-  line-height:0.85;
+  /* line-height:0.85; */
   color: var(--color-gray-800);
   background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
