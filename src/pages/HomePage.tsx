@@ -4,6 +4,7 @@ import { categories } from '../data/products';
 import ProductImage from '../components/ProductImage';
 import RequestForm from '../components/RequestForm';
 import HeroSection from '../components/HeroSection';
+import HeroSearchSection from '../components/HeroSearchSection';
 import { LinkButton } from '../components/ui/Button';
 import { useState } from 'react';
 
@@ -15,6 +16,9 @@ export default function HomePage() {
     <div>
       {/* Hero */}
       <HeroSection />
+
+      {/* Hero Search Section */}
+      <HeroSearchSection />
 
       {/* Categories — чёрный фон */}
       <section className="relative bg-gray-900 py-20 lg:py-28 overflow-hidden">
