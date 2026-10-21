@@ -2,10 +2,15 @@ node_modules
 dist
 build
 .git
-.gitignore
+.github
+.agents
+.codex
+.aws
 .env
 .env.*
 *.log
+README.md
+.gitignore
 .vscode
 .idea
 coverage

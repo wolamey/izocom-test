@@ -1,7 +1,11 @@
-version: '3.8'
+name: izocom-test
+
 services:
   frontend:
-    build: .
-    ports:
-      - "8080:80"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: izocom-test:latest
     restart: unless-stopped
+    ports:
+      - "${APP_BIND_ADDRESS:?Set APP_BIND_ADDRESS in .env}:${APP_PORT:?Set APP_PORT in .env}:80"
