@@ -71,7 +71,7 @@ export default function RequestForm({ productName, compact = false }: RequestFor
   }
 
   return (
-    <form onSubmit={handleSubmit} className={compact ? '' : 'space-y-5'}>
+    <form onSubmit={handleSubmit} className={compact ? ' h-full flex flex-col justify-between' : 'space-y-5'}>
       {!compact && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
