@@ -4,6 +4,7 @@ import { categories } from '../data/products';
 import ProductImage from '../components/ProductImage';
 import RequestForm from '../components/RequestForm';
 import HeroSection from '../components/HeroSection';
+import HeroSearchSection from '../components/HeroSearchSection';
 import { LinkButton } from '../components/ui/Button';
 import { useState } from 'react';
 
@@ -15,6 +16,9 @@ export default function HomePage() {
     <div>
       {/* Hero */}
       <HeroSection />
+
+      {/* Hero Search Section - скрыт */}
+      {/* <HeroSearchSection /> */}
 
       {/* Categories — чёрный фон */}
       <section className="relative bg-gray-900 py-20 lg:py-28 overflow-hidden">
@@ -79,11 +83,15 @@ export default function HomePage() {
       </section>
 
       {/* Application areas — интерактивный список с SVG */}
-      <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 lg:py-28 bg-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/3 left-0 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">Области применения</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">Наша продукция используется в различных отраслях промышленности и ЖКХ</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">Области применения</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">Наша продукция используется в различных отраслях промышленности и ЖКХ</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 items-start">
@@ -103,25 +111,25 @@ export default function HomePage() {
                   onMouseLeave={() => setActiveArea(null)}
                   className={`group flex items-start gap-4 p-5 border rounded-xl transition-all duration-300 cursor-pointer ${
                     activeArea === i
-                      ? 'bg-brand-50 border-brand-200 shadow-lg scale-[1.02]'
-                      : 'bg-gray-50 border-gray-100 hover:bg-brand-50 hover:border-brand-200'
+                      ? 'bg-brand-600/20 border-brand-500/50 shadow-lg shadow-brand-600/20 scale-[1.02]'
+                      : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
                   }`}
                 >
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
-                    activeArea === i ? 'bg-brand-500 scale-110' : 'bg-white group-hover:bg-brand-100'
+                    activeArea === i ? 'bg-brand-500 scale-110' : 'bg-white/10 group-hover:bg-brand-500/30'
                   }`}>
-                    <div className={`transition-colors duration-300 ${activeArea === i ? 'text-white' : 'text-brand-600'}`}>
+                    <div className={`transition-colors duration-300 ${activeArea === i ? 'text-white' : 'text-brand-400'}`}>
                       {item.icon}
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className={`font-semibold transition-colors mb-1 ${
-                      activeArea === i ? 'text-brand-600' : 'text-gray-900 group-hover:text-brand-600'
+                      activeArea === i ? 'text-brand-400' : 'text-white group-hover:text-brand-400'
                     }`}>{item.title}</h3>
-                    <p className="text-sm text-gray-500">{item.desc}</p>
+                    <p className="text-sm text-gray-400">{item.desc}</p>
                   </div>
                   <ArrowRight size={18} className={`transition-all shrink-0 mt-1 ${
-                    activeArea === i ? 'text-brand-600 translate-x-1' : 'text-gray-300 group-hover:text-brand-600 group-hover:translate-x-1'
+                    activeArea === i ? 'text-brand-400 translate-x-1' : 'text-white/30 group-hover:text-brand-400 group-hover:translate-x-1'
                   }`} />
                 </div>
               ))}
@@ -129,7 +137,7 @@ export default function HomePage() {
 
             {/* Right — visual */}
             <div className="relative lg:sticky lg:top-32">
-              <div className="bg-gradient-to-br from-brand-50 to-blue-50 rounded-2xl p-8 border border-gray-100">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-white/10">
                 <div className="aspect-square max-w-md mx-auto relative">
                   <svg viewBox="0 0 400 400" className="w-full h-full transition-transform duration-700" style={{
                     transform: activeArea !== null ? `rotate(${-activeArea * 60}deg)` : 'rotate(0deg)'
@@ -156,8 +164,8 @@ export default function HomePage() {
                         <g key={i} className="transition-all duration-500">
                           {/* Dashed line - always dashed, but brighter when active */}
                           <line x1="200" y1="200" x2={x} y2={y} stroke="#dc2626" strokeWidth={isActive ? "2" : "1"} opacity={isActive ? "0.8" : "0.3"} strokeDasharray="6 4" className="transition-all duration-500" />
-                          <circle cx={x} cy={y} r={isActive ? "35" : "25"} fill={isActive ? "#dc2626" : "white"} stroke="#dc2626" strokeWidth={isActive ? "3" : "2"} opacity={isActive ? "1" : "0.8"} className="transition-all duration-500" />
-                          <circle cx={x} cy={y} r={isActive ? "20" : "15"} fill={isActive ? "white" : "#dc2626"} opacity={isActive ? "0.3" : "0.1"} className="transition-all duration-500" />
+                          <circle cx={x} cy={y} r={isActive ? "35" : "25"} fill={isActive ? "#dc2626" : "#1f2937"} stroke="#dc2626" strokeWidth={isActive ? "3" : "2"} opacity={isActive ? "1" : "0.8"} className="transition-all duration-500" />
+                          <circle cx={x} cy={y} r={isActive ? "20" : "15"} fill={isActive ? "#1f2937" : "#dc2626"} opacity={isActive ? "0.3" : "0.2"} className="transition-all duration-500" />
                         </g>
                       );
                     })}
@@ -166,8 +174,8 @@ export default function HomePage() {
                   {/* Info overlay when hovering */}
                   {activeArea !== null && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-brand-200 max-w-[200px] text-center animate-fade-in">
-                        <p className="text-sm text-gray-700 leading-relaxed">
+                      <div className="bg-gray-800/95 backdrop-blur-sm rounded-xl p-4 shadow-xl border border-brand-500/30 max-w-[200px] text-center animate-fade-in">
+                        <p className="text-sm text-gray-300 leading-relaxed">
                           {activeArea !== null && [
                             'Снижение теплопотерь до 40% по сравнению с традиционными методами прокладки',
                             'Рабочая температура до 140°C, давление до 1.6 МПа',
@@ -182,7 +190,7 @@ export default function HomePage() {
                   )}
                 </div>
                 <div className="text-center mt-6">
-                  <p className="text-sm text-gray-600">6 отраслей — одна технология</p>
+                  <p className="text-sm text-gray-400">6 отраслей — одна технология</p>
                 </div>
               </div>
             </div>
@@ -315,19 +323,22 @@ export default function HomePage() {
       </section>
 
       {/* About us with YouTube */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 lg:py-28 bg-gray-900 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 right-0 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 text-brand-700 text-sm font-medium rounded-full mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 text-brand-400 text-sm font-medium rounded-full mb-4">
                 <Building2 size={14} />
                 О компании
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Изоком Пласт — надёжный партнёр</h2>
-              <p className="text-gray-600 mb-4 leading-relaxed">
+              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Изоком Пласт — надёжный партнёр</h2>
+              <p className="text-gray-400 mb-4 leading-relaxed">
                 Компания «Изоком Пласт» — российский производитель предизолированных стальных труб, фасонных изделий и комплектующих для строительства тепловых сетей.
               </p>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-400 mb-6 leading-relaxed">
                 Мы работаем с 2005 года и за это время поставили продукцию для объектов теплоснабжения в более чем 60 регионах России. Наше производство оснащено современным оборудованием и соответствует требованиям ГОСТ 30732-2006.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
@@ -368,12 +379,15 @@ export default function HomePage() {
       </section>
 
       {/* Production */}
-      <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 lg:py-28 bg-gray-800 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Собственное производство</h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <h2 className="text-3xl font-bold text-white mb-6">Собственное производство</h2>
+              <p className="text-gray-400 mb-6 leading-relaxed">
                 Производственная площадка оснащена современным оборудованием для изоляции труб диаметром от 57 до 1020 мм.
                 Контроль качества на каждом этапе — от подготовки стальной трубы до нанесения защитной оболочки.
               </p>
@@ -386,7 +400,7 @@ export default function HomePage() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckCircle2 size={20} className="text-green-500 shrink-0 mt-0.5" />
-                    <span className="text-gray-700">{item}</span>
+                    <span className="text-gray-300">{item}</span>
                   </div>
                 ))}
               </div>
@@ -395,32 +409,32 @@ export default function HomePage() {
                 variant="ghost"
                 size="md"
                 iconRight={<ArrowRight size={16} />}
-                className="mt-8"
+                className="mt-8 text-gray-300 hover:text-brand-400"
               >
                 Подробнее о производстве
               </LinkButton>
             </div>
-            <div className="bg-white rounded-2xl p-6 border border-gray-100">
+            <div className="bg-gray-900 rounded-2xl p-6 border border-white/10">
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gray-50 rounded-xl p-6 text-center">
-                  <Factory size={32} className="mx-auto text-brand-600 mb-2" />
-                  <div className="text-2xl font-bold text-gray-900">5000+</div>
-                  <div className="text-sm text-gray-500">м² производства</div>
+                <div className="bg-white/5 rounded-xl p-6 text-center">
+                  <Factory size={32} className="mx-auto text-brand-500 mb-2" />
+                  <div className="text-2xl font-bold text-white">5000+</div>
+                  <div className="text-sm text-gray-400">м² производства</div>
                 </div>
-                <div className="bg-gray-50 rounded-xl p-6 text-center">
-                  <ThermometerSun size={32} className="mx-auto text-blue-600 mb-2" />
-                  <div className="text-2xl font-bold text-gray-900">50 000</div>
-                  <div className="text-sm text-gray-500">п.м. в год</div>
+                <div className="bg-white/5 rounded-xl p-6 text-center">
+                  <ThermometerSun size={32} className="mx-auto text-blue-400 mb-2" />
+                  <div className="text-2xl font-bold text-white">50 000</div>
+                  <div className="text-sm text-gray-400">п.м. в год</div>
                 </div>
-                <div className="bg-gray-50 rounded-xl p-6 text-center">
-                  <Award size={32} className="mx-auto text-green-600 mb-2" />
-                  <div className="text-2xl font-bold text-gray-900">18</div>
-                  <div className="text-sm text-gray-500">лет на рынке</div>
+                <div className="bg-white/5 rounded-xl p-6 text-center">
+                  <Award size={32} className="mx-auto text-green-400 mb-2" />
+                  <div className="text-2xl font-bold text-white">18</div>
+                  <div className="text-sm text-gray-400">лет на рынке</div>
                 </div>
-                <div className="bg-gray-50 rounded-xl p-6 text-center">
-                  <Truck size={32} className="mx-auto text-amber-600 mb-2" />
-                  <div className="text-2xl font-bold text-gray-900">60+</div>
-                  <div className="text-sm text-gray-500">регионов доставки</div>
+                <div className="bg-white/5 rounded-xl p-6 text-center">
+                  <Truck size={32} className="mx-auto text-amber-400 mb-2" />
+                  <div className="text-2xl font-bold text-white">60+</div>
+                  <div className="text-sm text-gray-400">регионов доставки</div>
                 </div>
               </div>
             </div>
@@ -429,38 +443,41 @@ export default function HomePage() {
       </section>
 
       {/* АПТС — член ассоциации */}
-      <section className="py-16 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-brand-50 to-white rounded-2xl p-8 lg:p-12 border border-brand-100">
+      <section className="relative py-16 bg-gray-900 border-t border-white/5">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-600/5 rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 lg:p-12 border border-white/10">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-100 text-brand-700 text-sm font-medium rounded-full mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium rounded-full mb-4">
                   <Award size={14} />
                   Членство в ассоциации
                 </div>
-                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
                   ООО "Изоком Пласт" — член Ассоциации производителей трубопроводных систем
                 </h2>
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-400 mb-6">
                   Мы являемся активным участником профессионального сообщества, что подтверждает наш статус надёжного производителя.
                 </p>
                 <a
                   href="https://rapts.ru/tpost/sg46tkjm71-v-apts-vstupili-9-novih-organizatsii"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-brand-600 font-medium hover:gap-3 transition-all"
+                  className="inline-flex items-center gap-2 text-brand-400 font-medium hover:gap-3 transition-all"
                 >
                   Подробнее на сайте АПТС <ArrowRight size={16} />
                 </a>
               </div>
               <div className="flex justify-center lg:justify-end">
-                <div className="w-48 h-48 bg-white rounded-2xl shadow-lg flex items-center justify-center border border-gray-100">
+                <div className="w-48 h-48 bg-gray-900 rounded-2xl shadow-lg flex items-center justify-center border border-white/10">
                   <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-3 bg-brand-50 rounded-full flex items-center justify-center">
-                      <Award size={32} className="text-brand-600" />
+                    <div className="w-20 h-20 mx-auto mb-3 bg-brand-500/20 rounded-full flex items-center justify-center">
+                      <Award size={32} className="text-brand-400" />
                     </div>
-                    <div className="text-sm font-semibold text-gray-900">АПТС</div>
-                    <div className="text-xs text-gray-500">Ассоциация производителей<br/>трубопроводных систем</div>
+                    <div className="text-sm font-semibold text-white">АПТС</div>
+                    <div className="text-xs text-gray-400">Ассоциация производителей<br/>трубопроводных систем</div>
                   </div>
                 </div>
               </div>
@@ -470,15 +487,18 @@ export default function HomePage() {
       </section>
 
       {/* Наши представительства */}
-      <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 lg:py-28 bg-gray-800">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/3 right-0 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 text-brand-700 text-sm font-medium rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 text-brand-400 text-sm font-medium rounded-full mb-4">
               <Globe size={14} />
               География
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">Наши представительства</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">Официальные представители завода на территории Российской Федерации</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">Наши представительства</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">Официальные представители завода на территории Российской Федерации</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -490,13 +510,13 @@ export default function HomePage() {
       </section>
 
       {/* CTA / Request form */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section className="relative py-16 lg:py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 lg:p-12">
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 lg:p-12 border border-white/10">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
               <div>
                 <h2 className="text-3xl font-bold text-white mb-4">Запросить расчёт</h2>
-                <p className="text-gray-300 mb-6 ">
+                <p className="text-gray-300 mb-6">
                   Отправьте заявку — мы подберём продукцию, рассчитаем стоимость и подготовим коммерческое предложение.
                 </p>
                 <div className="space-y-3 text-sm text-gray-400">
@@ -514,7 +534,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <div className="bg-white rounded-xl p-6 ">
+              <div className="bg-gray-800 rounded-xl p-6 border border-white/10">
                 <RequestForm compact />
               </div>
             </div>
@@ -694,43 +714,43 @@ interface Dealer {
 
 function DealerCard({ dealer }: { dealer: Dealer }) {
   return (
-    <div className="bg-white rounded-xl p-6 border border-gray-100 hover:border-brand-200 hover:shadow-lg transition-all duration-300">
-      <h3 className="text-lg font-bold text-gray-900 mb-2">{dealer.name}</h3>
-      {dealer.description && <p className="text-sm text-gray-600 mb-4">{dealer.description}</p>}
+    <div className="bg-gray-900 rounded-xl p-6 border border-white/10 hover:border-brand-500/30 hover:shadow-lg hover:shadow-brand-600/10 transition-all duration-300">
+      <h3 className="text-lg font-bold text-white mb-2">{dealer.name}</h3>
+      {dealer.description && <p className="text-sm text-gray-400 mb-4">{dealer.description}</p>}
       
       <div className="space-y-2 text-sm">
         {dealer.phone && (
-          <div className="flex items-center gap-2 text-gray-700">
-            <Phone size={14} className="text-brand-600 shrink-0" />
-            <a href={`tel:${dealer.phone.replace(/\s/g, '')}`} className="hover:text-brand-600 transition-colors">{dealer.phone}</a>
+          <div className="flex items-center gap-2 text-gray-300">
+            <Phone size={14} className="text-brand-400 shrink-0" />
+            <a href={`tel:${dealer.phone.replace(/\s/g, '')}`} className="hover:text-brand-400 transition-colors">{dealer.phone}</a>
           </div>
         )}
         {dealer.phone2 && (
-          <div className="flex items-center gap-2 text-gray-700">
-            <Phone size={14} className="text-brand-600 shrink-0" />
-            <a href={`tel:${dealer.phone2.replace(/\s/g, '')}`} className="hover:text-brand-600 transition-colors">{dealer.phone2}</a>
+          <div className="flex items-center gap-2 text-gray-300">
+            <Phone size={14} className="text-brand-400 shrink-0" />
+            <a href={`tel:${dealer.phone2.replace(/\s/g, '')}`} className="hover:text-brand-400 transition-colors">{dealer.phone2}</a>
           </div>
         )}
         {dealer.mobile && (
-          <div className="flex items-center gap-2 text-gray-700">
-            <Phone size={14} className="text-brand-600 shrink-0" />
+          <div className="flex items-center gap-2 text-gray-300">
+            <Phone size={14} className="text-brand-400 shrink-0" />
             <span>{dealer.mobile}</span>
           </div>
         )}
         {dealer.email && (
-          <div className="flex items-center gap-2 text-gray-700">
-            <Mail size={14} className="text-brand-600 shrink-0" />
-            <a href={`mailto:${dealer.email}`} className="hover:text-brand-600 transition-colors">{dealer.email}</a>
+          <div className="flex items-center gap-2 text-gray-300">
+            <Mail size={14} className="text-brand-400 shrink-0" />
+            <a href={`mailto:${dealer.email}`} className="hover:text-brand-400 transition-colors">{dealer.email}</a>
           </div>
         )}
         {dealer.website && (
-          <div className="flex items-center gap-2 text-gray-700">
-            <Globe size={14} className="text-brand-600 shrink-0" />
-            <a href={dealer.website} target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 transition-colors">{dealer.website.replace('https://', '').replace('http://', '')}</a>
+          <div className="flex items-center gap-2 text-gray-300">
+            <Globe size={14} className="text-brand-400 shrink-0" />
+            <a href={dealer.website} target="_blank" rel="noopener noreferrer" className="hover:text-brand-400 transition-colors">{dealer.website.replace('https://', '').replace('http://', '')}</a>
           </div>
         )}
-        <div className="flex items-start gap-2 text-gray-700 pt-2">
-          <MapPin size={14} className="text-brand-600 shrink-0 mt-0.5" />
+        <div className="flex items-start gap-2 text-gray-400 pt-2">
+          <MapPin size={14} className="text-brand-400 shrink-0 mt-0.5" />
           <span className="text-xs">{dealer.address}</span>
         </div>
         {dealer.hours && (
@@ -743,7 +763,7 @@ function DealerCard({ dealer }: { dealer: Dealer }) {
           href={dealer.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 mt-4 text-sm text-brand-600 font-medium hover:gap-2 transition-all"
+          className="inline-flex items-center gap-1 mt-4 text-sm text-brand-400 font-medium hover:gap-2 transition-all"
         >
           Подробнее <ArrowRight size={14} />
         </a>
