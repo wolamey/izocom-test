@@ -127,9 +127,9 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-8 items-center h-full">
+        <div className="grid lg:grid-cols-2 gap-8  h-full">
           {/* Left side — animated text */}
-          <div className="relative z-10">
+          <div className="relative z-10 self-center">
             <div
               key={currentSlide + '-badge'}
               className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium rounded-full mb-5 animate-fade-in-up"
@@ -253,14 +253,14 @@ export default function HeroSection() {
             })}
 
             {/* Navigation buttons */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex w-full pl-20 justify-between gap-3 z-99">
               <button
                 onClick={prevSlide}
                 disabled={isAnimating}
                 className="w-10 h-10 bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg border border-white/10 flex items-center justify-center text-gray-300 hover:text-brand-400 hover:border-brand-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Предыдущий слайд"
               >
-                <ArrowLeft size={18} />
+                <ArrowLeft size={10} />
               </button>
               
               <div className="flex items-center gap-2 bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-white/10">
@@ -281,7 +281,7 @@ export default function HeroSection() {
                     }`}
                   />
                 ))}
-              </div>
+              </div> */}
 
               <button
                 onClick={nextSlide}
@@ -289,7 +289,7 @@ export default function HeroSection() {
                 className="w-10 h-10 bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg border border-white/10 flex items-center justify-center text-gray-300 hover:text-brand-400 hover:border-brand-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Следующий слайд"
               >
-                <ArrowRight size={18} />
+                <ArrowRight size={10} />
               </button>
             </div>
 
