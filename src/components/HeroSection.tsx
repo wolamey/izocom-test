@@ -263,7 +263,7 @@ export default function HeroSection() {
                 <ArrowLeft size={10} />
               </button>
               
-              <div className="flex items-center gap-2 bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-white/10">
+              {/* <div className="flex items-center gap-2 bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-white/10">
                 {slides.map((_, i) => (
                   <button
                     key={i}
@@ -281,7 +281,7 @@ export default function HeroSection() {
                     }`}
                   />
                 ))}
-              </div> */}
+              </div>  */}
 
               <button
                 onClick={nextSlide}
