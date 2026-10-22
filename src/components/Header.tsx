@@ -72,19 +72,19 @@ export default function Header() {
   }, [location.pathname]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white">
-      {/* Top bar — оставляем как есть */}
-      <div className="bg-gray-50 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-9 text-sm text-gray-500">
+    <header className="sticky top-0 z-50 bg-gray-900 border-b border-white/5">
+      {/* Top bar */}
+      <div className="bg-gray-950 border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-9 text-sm text-gray-400">
           <span>г. Москва, ул. Промышленная, д. 12</span>
           <div className="hidden sm:flex items-center gap-4">
-            <a href="mailto:info@izocomplast.ru" className="hover:text-brand-600 transition-colors">info@izocomplast.ru</a>
+            <a href="mailto:info@izocomplast.ru" className="hover:text-brand-400 transition-colors">info@izocomplast.ru</a>
             <span>•</span>
             <span>Пн–Пт: 9:00–18:00</span>
             <span>•</span>
        <a
               href="tel:+74951234567"
-              className="hidden md:flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand-600 transition-colors"
+              className="hidden md:flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors"
             >
               <Phone size={16} />
               <span>+7 (495) 123-45-67</span>
@@ -93,8 +93,8 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Main header — ступеньки и анимации */}
-      <div className="relative border-b border-gray-100">
+      {/* Main header */}
+      <div className="relative border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
@@ -104,8 +104,8 @@ export default function Header() {
                 <div className="absolute inset-0 bg-brand-700 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               </div>
               <div className="hidden sm:block">
-                <div className="font-bold text-gray-900 text-lg leading-tight">Изоком Пласт</div>
-                <div className="text-xs text-gray-500">Теплоизоляция трубопроводов</div>
+                <div className="font-bold text-white text-lg leading-tight">Изоком Пласт</div>
+                <div className="text-xs text-gray-400">Теплоизоляция трубопроводов</div>
               </div>
             </Link>
 
@@ -127,26 +127,26 @@ export default function Header() {
                       <Link
                         to={item.path}
                         className={`relative px-4 py-2 text-sm font-medium transition-colors ${
-                          active ? 'text-brand-600' : 'text-gray-700 hover:text-brand-600'
+                          active ? 'text-brand-400' : 'text-gray-300 hover:text-brand-400'
                         }`}
                         style={{ marginLeft: i === 0 ? 0 : `${i * 2}px` }}
                       >
                         {item.name}
                         {active && (
-                          <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-600 rounded-full" />
+                          <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-500 rounded-full" />
                         )}
                       </Link>
                     ) : (
                       <button
                         className={`relative px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1 ${
-                          active || isOpen ? 'text-brand-600' : 'text-gray-700 hover:text-brand-600'
+                          active || isOpen ? 'text-brand-400' : 'text-gray-300 hover:text-brand-400'
                         }`}
                         style={{ marginLeft: `${i * 2}px` }}
                       >
                         {item.name}
                         <ChevronDown size={14} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
                         {(active || isOpen) && (
-                          <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-600 rounded-full" />
+                          <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-500 rounded-full" />
                         )}
                       </button>
                     )}
@@ -158,21 +158,20 @@ export default function Header() {
                           isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                         }`}
                       >
-                        <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-2 min-w-[280px] overflow-hidden">
-                          {/* <div className="absolute top-0 left-8 w-4 h-4 bg-white border-t border-l border-gray-100 rotate-45 -translate-y-2" /> */}
+                        <div className="bg-gray-800 rounded-xl shadow-xl border border-white/10 p-2 min-w-[280px] overflow-hidden">
                           {item.dropdown!.map((sub, j) => (
                             <Link
                               key={sub.path}
                               to={sub.path}
-                              className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors group/item"
+                              className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors group/item"
                               style={{ animationDelay: `${j * 50}ms` }}
                             >
-                              <div className="w-9 h-9 bg-brand-50 rounded-lg flex items-center justify-center text-brand-600 shrink-0 group-hover/item:bg-brand-100 transition-colors">
+                              <div className="w-9 h-9 bg-brand-500/10 rounded-lg flex items-center justify-center text-brand-400 shrink-0 group-hover/item:bg-brand-500/20 transition-colors">
                                 {sub.icon}
                               </div>
                               <div className="min-w-0">
-                                <div className="text-sm font-medium text-gray-900 group-hover/item:text-brand-600 transition-colors">{sub.name}</div>
-                                {sub.desc && <div className="text-xs text-gray-500 mt-0.5">{sub.desc}</div>}
+                                <div className="text-sm font-medium text-white group-hover/item:text-brand-400 transition-colors">{sub.name}</div>
+                                {sub.desc && <div className="text-xs text-gray-400 mt-0.5">{sub.desc}</div>}
                               </div>
                             </Link>
                           ))}
@@ -189,7 +188,7 @@ export default function Header() {
               {/* Search button с анимацией */}
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
-                className="relative p-2.5 rounded-full text-gray-500 hover:text-brand-600 hover:bg-brand-50 transition-all group"
+                className="relative p-2.5 rounded-full text-gray-400 hover:text-brand-400 hover:bg-white/5 transition-all group"
                 aria-label="Поиск"
               >
                 <Search
@@ -224,7 +223,7 @@ export default function Header() {
 
         {/* Search overlay — красивая анимация */}
         <div
-          className={`absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg border-b border-gray-100 overflow-hidden transition-all duration-500 z-40 ${
+          className={`absolute top-full left-0 right-0 bg-gray-900/95 backdrop-blur-lg border-b border-white/10 overflow-hidden transition-all duration-500 z-40 ${
             searchOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
@@ -233,7 +232,7 @@ export default function Header() {
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center">
                 <Search
                   size={24}
-                  className={`text-brand-600 transition-all duration-500 ${searchOpen ? 'scale-100 rotate-0' : 'scale-0 rotate-180'}`}
+                  className={`text-brand-400 transition-all duration-500 ${searchOpen ? 'scale-100 rotate-0' : 'scale-0 rotate-180'}`}
                 />
               </div>
               <input
@@ -242,7 +241,7 @@ export default function Header() {
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 placeholder="Поиск по продукции, документам, новостям..."
-                className="w-full pl-14 pr-4 py-4 bg-transparent text-lg text-gray-900 placeholder-gray-400 focus:outline-none border-b-2 border-gray-200 focus:border-brand-600 transition-colors"
+                className="w-full pl-14 pr-4 py-4 bg-transparent text-lg text-white placeholder-gray-500 focus:outline-none border-b-2 border-white/10 focus:border-brand-500 transition-colors"
               />
               {searchQuery && (
                 <button
@@ -255,11 +254,11 @@ export default function Header() {
             </div>
             {/* Quick suggestions */}
             <div className={`mt-6 flex flex-wrap gap-2 transition-all duration-500 delay-200 ${searchOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-              <span className="text-sm text-gray-500 mr-2">Популярные:</span>
+              <span className="text-sm text-gray-400 mr-2">Популярные:</span>
               {['Трубы ППУ', 'Фасонные изделия', 'ГОСТ 30732', 'Сертификаты', 'BIM-библиотека'].map(tag => (
                 <button
                   key={tag}
-                  className="px-3 py-1.5 bg-gray-100 hover:bg-brand-50 hover:text-brand-600 text-sm text-gray-700 rounded-full transition-colors"
+                  className="px-3 py-1.5 bg-white/5 hover:bg-brand-500/10 hover:text-brand-400 text-sm text-gray-300 rounded-full transition-colors"
                 >
                   {tag}
                 </button>
@@ -271,7 +270,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       <div
-        className={`lg:hidden bg-white border-t border-gray-100 overflow-hidden transition-all duration-300 ${
+        className={`lg:hidden bg-gray-900 border-t border-white/5 overflow-hidden transition-all duration-300 ${
           mobileOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
@@ -282,21 +281,21 @@ export default function Header() {
                 <Link
                   to={item.path}
                   className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                    isActive(item.path) ? 'text-brand-600 bg-brand-50' : 'text-gray-700 hover:text-brand-600 hover:bg-gray-50'
+                    isActive(item.path) ? 'text-brand-400 bg-brand-500/10' : 'text-gray-300 hover:text-brand-400 hover:bg-white/5'
                   }`}
                 >
                   {item.name}
                 </Link>
               ) : (
                 <>
-                  <div className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">{item.name}</div>
+                  <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">{item.name}</div>
                   {item.dropdown?.map(sub => (
                     <Link
                       key={sub.path}
                       to={sub.path}
-                      className="flex items-center gap-3 px-4 py-2.5 ml-2 rounded-lg text-sm text-gray-700 hover:text-brand-600 hover:bg-gray-50 transition-colors"
+                      className="flex items-center gap-3 px-4 py-2.5 ml-2 rounded-lg text-sm text-gray-300 hover:text-brand-400 hover:bg-white/5 transition-colors"
                     >
-                      <span className="text-brand-600">{sub.icon}</span>
+                      <span className="text-brand-400">{sub.icon}</span>
                       {sub.name}
                     </Link>
                   ))}
@@ -304,8 +303,8 @@ export default function Header() {
               )}
             </div>
           ))}
-          <div className="pt-3 border-t border-gray-100 mt-3">
-            <a href="tel:+74951234567" className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-700">
+          <div className="pt-3 border-t border-white/5 mt-3">
+            <a href="tel:+74951234567" className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-300">
               <Phone size={16} />
               +7 (495) 123-45-67
             </a>

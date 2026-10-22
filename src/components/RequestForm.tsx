@@ -56,13 +56,13 @@ export default function RequestForm({ productName, compact = false }: RequestFor
 
   if (status === 'success') {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
-        <CheckCircle size={48} className="mx-auto text-green-500 mb-4" />
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">Запрос отправлен</h3>
-        <p className="text-gray-600 text-sm mb-4">Мы свяжемся с вами в ближайшее время.</p>
+      <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-8 text-center">
+        <CheckCircle size={48} className="mx-auto text-green-400 mb-4" />
+        <h3 className="text-lg font-semibold text-white mb-2">Запрос отправлен</h3>
+        <p className="text-gray-400 text-sm mb-4">Мы свяжемся с вами в ближайшее время.</p>
         <button
           onClick={() => setStatus('idle')}
-          className="text-brand-600 text-sm font-medium hover:underline"
+          className="text-brand-400 text-sm font-medium hover:underline"
         >
           Отправить ещё один запрос
         </button>
@@ -75,27 +75,27 @@ export default function RequestForm({ productName, compact = false }: RequestFor
       {!compact && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Ваше имя <span className="text-brand-600">*</span>
+            <label className="block text-sm font-medium text-gray-300 mb-1.5">
+              Ваше имя <span className="text-brand-400">*</span>
             </label>
             <input
               type="text"
               value={form.name}
               onChange={e => handleChange('name', e.target.value)}
-              className={`w-full px-4 py-2.5 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent ${errors.name ? 'border-red-300 bg-red-50' : 'border-gray-200'}`}
+              className={`w-full px-4 py-2.5 border rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent ${errors.name ? 'border-red-500/50 bg-red-500/10' : 'border-white/10 bg-white/5'}`}
               placeholder="Иван Иванов"
             />
-            {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+            {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Телефон <span className="text-brand-600">*</span>
+            <label className="block text-sm font-medium text-gray-300 mb-1.5">
+              Телефон <span className="text-brand-400">*</span>
             </label>
             <input
               type="tel"
               value={form.phone}
               onChange={e => handleChange('phone', e.target.value)}
-              className={`w-full px-4 py-2.5 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent ${errors.phone ? 'border-red-300 bg-red-50' : 'border-gray-200'}`}
+              className={`w-full px-4 py-2.5 border rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent ${errors.phone ? 'border-red-500/50 bg-red-500/10' : 'border-white/10 bg-white/5'}`}
               placeholder="+7 (___) ___-__-__"
             />
             {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
