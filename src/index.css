@@ -4,7 +4,7 @@
 /* Шрифт Title временно отключён из-за проблем с именем файла (скобки)
 @font-face {
   font-family: 'Title';
-  src: url('./fonts/accid___(Ru)_0.ttf') format('truetype');
+  src: url('./fonts/accid-ru.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
