@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Search, FileText, ChevronDown, Building2, Users, Wrench, FileText as DocIcon, MapPin, Newspaper } from 'lucide-react';
-import logo from './logo.png'
 interface NavItem {
   name: string;
   path?: string;
@@ -110,7 +109,7 @@ export default function Header() {
             </Link> */}
             <div className="flex items-center justify-between h-10 lg:h-5 w-[100px]">
 
-<img src={logo} alt="" />
+<img src="/logo.png" alt="logo" />
 
             </div>
             {/* Desktop nav — ступеньки */}
