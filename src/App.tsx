@@ -7,6 +7,7 @@ import ProductsPage from './pages/ProductsPage';
 import ProductPage from './pages/ProductPage';
 import DocumentsPage from './pages/DocumentsPage';
 import AboutPage from './pages/AboutPage';
+import EnergyEfficiencyPage from './pages/EnergyEfficiencyPage';
 import ContactsPage from './pages/ContactsPage';
 import RequestPage from './pages/RequestPage';
 import ScrollToTop from './components/ScrollToTop';
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/products/:categoryId/:productId" element={<ProductPage />} />
             <Route path="/documents" element={<DocumentsPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/energy" element={<EnergyEfficiencyPage />} />
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/request" element={<RequestPage />} />
           </Routes>

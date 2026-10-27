@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Search, FileText, ChevronDown, Building2, Users, Wrench, FileText as DocIcon, MapPin, Newspaper } from 'lucide-react';
-import logo from './logo.png'
+import { Menu, X, Phone, Search, FileText, ChevronDown, Building2, Users, Wrench, FileText as DocIcon, MapPin, Newspaper, Zap } from 'lucide-react';
 interface NavItem {
   name: string;
   path?: string;
@@ -23,7 +22,7 @@ export default function Header() {
       name: 'Компания',
       dropdown: [
         { name: 'О компании', path: '/about', icon: <Building2 size={18} />, desc: 'История и ценности' },
-        { name: 'Энергоэффективность', path: '/energy', icon: <Wrench size={18} />, desc: 'Экономия ресурсов' },
+        { name: 'Энергоэффективность', path: '/energy', icon: <Zap size={18} />, desc: 'Экономия ресурсов' },
         { name: 'Всё о трубах', path: '/about-pipes', icon: <Wrench size={18} />, desc: 'Технологии производства' },
         { name: 'Нормативные документы', path: '/standards', icon: <DocIcon size={18} />, desc: 'ГОСТы и стандарты' },
         { name: 'Наши объекты', path: '/projects', icon: <MapPin size={18} />, desc: 'Реализованные проекты' },
@@ -108,11 +107,16 @@ export default function Header() {
                 <div className="text-xs text-gray-400">Теплоизоляция трубопроводов</div>
               </div>
             </Link> */}
-            <div className="flex items-center justify-between h-10 lg:h-5 w-[100px]">
-
-<img src={logo} alt="" />
-
-            </div>
+            <Link to="/" className="flex items-center gap-3 shrink-0 group">
+              <div className="relative w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center overflow-hidden">
+                <span className="text-white font-bold text-lg relative z-10 transition-transform group-hover:scale-110">И</span>
+                <div className="absolute inset-0 bg-brand-700 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              </div>
+              <div className="hidden sm:block">
+                <div className="font-bold text-white text-lg leading-tight">Изоком Пласт</div>
+                <div className="text-xs text-gray-400">Теплоизоляция трубопроводов</div>
+              </div>
+            </Link>
             {/* Desktop nav — ступеньки */}
             <nav className="hidden lg:flex items-center">
               {navItems.map((item, i) => {
