@@ -8,15 +8,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">И</span>
-              </div>
-              <div>
-                <div className="font-bold text-white text-lg">Изоком Пласт</div>
-                <div className="text-xs text-gray-400">Теплоизоляция трубопроводов</div>
-              </div>
-            </div>
+  <img src="/logo.png" className='w-[80%] mb-5' alt="" />
+     
             <p className="text-sm text-gray-400 ">
               Производство предизолированных труб, фасонных изделий и комплектующих для тепловых сетей.
             </p>

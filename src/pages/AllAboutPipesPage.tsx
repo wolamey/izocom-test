@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ChevronRight, Eye, Calendar, TrendingUp, Tag, ArrowRight } from 'lucide-react';
+import { ChevronRight, Eye, Calendar, TrendingUp, Tag, ArrowRight, Camera } from 'lucide-react';
 import { LinkButton } from '../components/ui/Button';
 
 export default function AllAboutPipesPage() {
@@ -174,7 +174,7 @@ export default function AllAboutPipesPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Left images */}
-            <div className="hidden lg:block space-y-4">
+            {/* <div className="hidden lg:block space-y-4">
               <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-brand-500/30 transition-all duration-300">
                 <img
                   src="https://izocomplast.ru/images/blog/Energy_efficiency/energo.png"
@@ -183,17 +183,17 @@ export default function AllAboutPipesPage() {
                   loading="lazy"
                 />
               </div>
-            </div>
+            </div> */}
 
             {/* Articles grid */}
-            <div className="lg:col-span-2">
-              <div className="grid sm:grid-cols-2 gap-6">
+            <div className="lg:col-span-3">
+              <div className="grid sm:grid-cols-3 gap-6">
                 {articles.map((article) => (
                   <article
                     key={article.id}
                     className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-brand-500/30 transition-all duration-300"
                   >
-                    {article.image && (
+                    {article.image ? (
                       <div className="aspect-video bg-gray-800 overflow-hidden">
                         <img
                           src={article.image}
@@ -201,6 +201,10 @@ export default function AllAboutPipesPage() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
+                      </div>
+                    ):(
+                         <div className="aspect-video flex justify-center items-center bg-gray-800 overflow-hidden">
+                     <Camera/>
                       </div>
                     )}
                     <div className="p-5">
@@ -352,7 +356,7 @@ export default function AllAboutPipesPage() {
               to="/contacts"
               variant="outline"
               size="lg"
-              className="border-white/20 text-white hover:bg-white/5 hover:border-brand-500/50"
+              className="border-white/20 text-white bg-transparent! hover:bg-white/5 hover:border-brand-500/50"
             >
               Связаться с нами
             </LinkButton>
