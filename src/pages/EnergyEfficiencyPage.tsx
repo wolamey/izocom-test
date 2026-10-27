@@ -112,9 +112,9 @@ export default function EnergyEfficiencyPage() {
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-2 gap-8">
             {/* Left images */}
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-brand-500/30 transition-all duration-300">
                 <img
                   src="https://izocomplast.ru/images/blog/Energy_efficiency/energo.png"
@@ -131,16 +131,16 @@ export default function EnergyEfficiencyPage() {
                   loading="lazy"
                 />
               </div>
-            </div>
+            </div> */}
 
             {/* Center article */}
             <div className="lg:col-span-1">
               <article className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-brand-500/30 transition-all duration-300">
-                <div className="aspect-video bg-gray-800 overflow-hidden">
+                <div className=" bg-gray-800 overflow-hidden">
                   <img
                     src="https://izocomplast.ru/images/blog/Energy_efficiency/LOGO_.jpg"
                     alt="Сертификат EN 253, EN 448"
-                    className="w-full h-full object-cover"
+                    className="w-full"
                     loading="lazy"
                   />
                 </div>
@@ -247,11 +247,11 @@ export default function EnergyEfficiencyPage() {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <article className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-brand-500/30 transition-all duration-300">
-            <div className="aspect-video bg-gray-800 overflow-hidden">
+            <div className=" bg-gray-800 overflow-hidden">
               <img
                 src="https://izocomplast.ru/images/blog/Energy_efficiency/banner-energo.png"
                 alt="Энергоэффективная технология теплоизоляции"
-                className="w-full h-full object-cover"
+                className="w-full "
                 loading="lazy"
               />
             </div>
@@ -356,7 +356,7 @@ export default function EnergyEfficiencyPage() {
               to="/contacts"
               variant="outline"
               size="lg"
-              className="border-white/20 text-white hover:bg-white/5 hover:border-brand-500/50"
+              className="border-white/20 bg-transparent! text-white hover:bg-white/5 hover:border-brand-500/50"
             >
               Связаться с нами
             </LinkButton>
