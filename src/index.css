@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 /* Подключение локальных шрифтов */
+/* Шрифт Title временно отключён из-за проблем с именем файла (скобки)
 @font-face {
   font-family: 'Title';
   src: url('./fonts/accid-ru.ttf') format('truetype');
@@ -8,6 +9,7 @@
   font-style: normal;
   font-display: swap;
 }
+*/
 
 @font-face {
   font-family: 'Main';

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Search, FileText, ChevronDown, Building2, Users, Wrench, FileText as DocIcon, MapPin, Newspaper } from 'lucide-react';
+import { Menu, X, Phone, Search, FileText, ChevronDown, Building2, Users, Wrench, FileText as DocIcon, MapPin, Newspaper, Zap } from 'lucide-react';
 interface NavItem {
   name: string;
   path?: string;
@@ -22,7 +22,7 @@ export default function Header() {
       name: 'Компания',
       dropdown: [
         { name: 'О компании', path: '/about', icon: <Building2 size={18} />, desc: 'История и ценности' },
-        { name: 'Энергоэффективность', path: '/energy', icon: <Wrench size={18} />, desc: 'Экономия ресурсов' },
+        { name: 'Энергоэффективность', path: '/energy', icon: <Zap size={18} />, desc: 'Экономия ресурсов' },
         { name: 'Всё о трубах', path: '/about-pipes', icon: <Wrench size={18} />, desc: 'Технологии производства' },
         { name: 'Нормативные документы', path: '/standards', icon: <DocIcon size={18} />, desc: 'ГОСТы и стандарты' },
         { name: 'Наши объекты', path: '/projects', icon: <MapPin size={18} />, desc: 'Реализованные проекты' },
@@ -107,11 +107,7 @@ export default function Header() {
                 <div className="text-xs text-gray-400">Теплоизоляция трубопроводов</div>
               </div>
             </Link> */}
-            <div className="flex items-center justify-between h-10 lg:h-5 w-[100px]">
-
-<img src="/logo.png" alt="logo" />
-
-            </div>
+  <img src="/logo.png" className='h-[80%]' alt="" />
             {/* Desktop nav — ступеньки */}
             <nav className="hidden lg:flex items-center">
               {navItems.map((item, i) => {

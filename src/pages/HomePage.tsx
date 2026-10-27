@@ -4,7 +4,7 @@ import { categories } from '../data/products';
 import ProductImage from '../components/ProductImage';
 import RequestForm from '../components/RequestForm';
 import HeroSection from '../components/HeroSection';
-import HeroSearchSection from '../components/HeroSearchSection';
+// import HeroSearchSection from '../components/HeroSearchSection'; // Временно скрыт
 import { LinkButton } from '../components/ui/Button';
 import { useState } from 'react';
 
