@@ -1,0 +1,62 @@
+name: Izocom CI/CD
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+jobs:
+    build:
+        name: Check frontend
+        runs-on:
+            group: build
+        concurrency:
+            group: izocom-build-${{ github.ref }}
+            cancel-in-progress: true
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Check types
+              run: npm run typecheck
+
+            - name: Build frontend
+              run: npm run build
+
+            - name: Validate Compose configuration
+              run: docker compose --env-file .env config --quiet
+
+    deploy:
+        name: Deploy frontend
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        needs: build
+        runs-on:
+            group: build
+        concurrency:
+            group: izocom-test-production
+            cancel-in-progress: false
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Build and start container
+              run: |
+                  test -r .env
+                  docker compose --env-file .env config --quiet
+                  docker compose --env-file .env up --build --detach --wait --wait-timeout 120 --remove-orphans
