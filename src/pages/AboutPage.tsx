@@ -176,7 +176,7 @@ export default function AboutPage() {
               variant="outline"
               size="md"
               iconRight={<ArrowRight size={16} />}
-              className="border-white/20 text-white hover:bg-white/5 hover:border-brand-500/50"
+              className="border-white/20 text-white hover:bg-white/5 bg-transparent! hover:border-brand-500/50"
             >
               Все документы
             </LinkButton>
@@ -255,7 +255,7 @@ export default function AboutPage() {
               to="/contacts"
               variant="outline"
               size="lg"
-              className="border-white/20 text-white hover:bg-white/5 hover:border-brand-500/50"
+              className="border-white/20 bg-transparent! text-white hover:bg-white/5 hover:border-brand-500/50"
             >
               Связаться с нами
             </LinkButton>
