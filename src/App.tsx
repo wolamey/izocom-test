@@ -9,6 +9,11 @@ import DocumentsPage from './pages/DocumentsPage';
 import AboutPage from './pages/AboutPage';
 import EnergyEfficiencyPage from './pages/EnergyEfficiencyPage';
 import AllAboutPipesPage from './pages/AllAboutPipesPage';
+import StandardsPage from './pages/StandardsPage';
+import ProjectsPage from './pages/ProjectsPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import NewsPage from './pages/NewsPage';
+import NewsDetailPage from './pages/NewsDetailPage';
 import ContactsPage from './pages/ContactsPage';
 import RequestPage from './pages/RequestPage';
 import ScrollToTop from './components/ScrollToTop';
@@ -30,6 +35,11 @@ export default function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/energy" element={<EnergyEfficiencyPage />} />
             <Route path="/about-pipes" element={<AllAboutPipesPage />} />
+            <Route path="/standards" element={<StandardsPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/projects/:projectId" element={<ProjectDetailPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/:slug" element={<NewsDetailPage />} />
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/request" element={<RequestPage />} />
           </Routes>
