@@ -9,6 +9,7 @@ import DocumentsPage from './pages/DocumentsPage';
 import AboutPage from './pages/AboutPage';
 import EnergyEfficiencyPage from './pages/EnergyEfficiencyPage';
 import AllAboutPipesPage from './pages/AllAboutPipesPage';
+import StandardsPage from './pages/StandardsPage';
 import ContactsPage from './pages/ContactsPage';
 import RequestPage from './pages/RequestPage';
 import ScrollToTop from './components/ScrollToTop';
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/energy" element={<EnergyEfficiencyPage />} />
             <Route path="/about-pipes" element={<AllAboutPipesPage />} />
+            <Route path="/standards" element={<StandardsPage />} />
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/request" element={<RequestPage />} />
           </Routes>
