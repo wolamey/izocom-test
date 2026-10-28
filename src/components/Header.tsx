@@ -107,16 +107,7 @@ export default function Header() {
                 <div className="text-xs text-gray-400">Теплоизоляция трубопроводов</div>
               </div>
             </Link> */}
-            <Link to="/" className="flex items-center gap-3 shrink-0 group">
-              <div className="relative w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center overflow-hidden">
-                <span className="text-white font-bold text-lg relative z-10 transition-transform group-hover:scale-110">И</span>
-                <div className="absolute inset-0 bg-brand-700 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              </div>
-              <div className="hidden sm:block">
-                <div className="font-bold text-white text-lg leading-tight">Изоком Пласт</div>
-                <div className="text-xs text-gray-400">Теплоизоляция трубопроводов</div>
-              </div>
-            </Link>
+  <img src="/logo.png" className='h-[80%]' alt="" />
             {/* Desktop nav — ступеньки */}
             <nav className="hidden lg:flex items-center">
               {navItems.map((item, i) => {
