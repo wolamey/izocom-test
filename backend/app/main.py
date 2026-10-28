@@ -1,7 +1,3 @@
-from email.policy import default
-from itertools import product
-from turtle import title
-
 from fastapi import FastAPI
 from app.api.public.products import router as products_router
 app=FastAPI(title="Изоком Пласт API")

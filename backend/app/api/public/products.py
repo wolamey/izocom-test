@@ -63,7 +63,7 @@ def get_product(slug: str):
         if product["slug"]==slug:
             return{"data": product}
 
-        raise HTTPException(
-            status_code=404,
-            detail="Товар не найден"
+    raise HTTPException(
+        status_code=404,
+        detail="Товар не найден"
         )
