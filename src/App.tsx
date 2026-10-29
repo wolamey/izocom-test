@@ -17,6 +17,7 @@ import NewsDetailPage from './pages/NewsDetailPage';
 import ContactsPage from './pages/ContactsPage';
 import SalesDepartmentPage from './pages/SalesDepartmentPage';
 import SupplyDepartmentPage from './pages/SupplyDepartmentPage';
+import DealersPage from './pages/DealersPage';
 import RequestPage from './pages/RequestPage';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/contacts/sales" element={<SalesDepartmentPage />} />
             <Route path="/contacts/supply" element={<SupplyDepartmentPage />} />
+            <Route path="/contacts/dealers" element={<DealersPage />} />
             <Route path="/request" element={<RequestPage />} />
           </Routes>
         </main>
