@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, Clock, Truck, Award, Factory, Zap, ThermometerSun, CheckCircle2, Sparkles, Layers, ChevronDown, MapPin, Phone, Mail, Globe, Building2 } from 'lucide-react';
 import { categories } from '../data/products';
+import { dealers } from '../data/dealers';
+import type { Dealer } from '../data/dealers';
 import ProductImage from '../components/ProductImage';
 import RequestForm from '../components/RequestForm';
 import HeroSection from '../components/HeroSection';
@@ -612,104 +614,6 @@ function CategoryIcon({ type }: { type: string }) {
     default:
       return null;
   }
-}
-
-// Dealer data
-const dealers = [
-  {
-    name: 'АПРОМ',
-    description: 'ООО "АПРОМ" - официальный представитель завода на территории РФ',
-    phone: '8(473)229-83-00',
-    mobile: '8(929)009-21-00',
-    email: 'sale@apromvrn.ru',
-    website: 'https://apromvrn.ru/',
-    address: '394019, Россия, г. Воронеж, ул. Солнечная, д. 7Д, офис 25',
-  },
-  {
-    name: 'РЕГИОН СЕРВИС',
-    description: 'ООО "Регион Сервис" - официальный представитель завода на территории РФ',
-    phone: '+7(473) 290-34-26',
-    mobile: '+7(930) 400-65-56',
-    email: 'office@regionservis-vrn.ru',
-    website: 'https://regionservis-vrn.ru/',
-    address: 'Россия, 394088, г.Воронеж, ул.Антонова-Овсеенко, д.35В, офис 4',
-  },
-  {
-    name: 'Гибкие инженерные системы',
-    description: 'Представительство в Москве - ООО «Гибкие инженерные системы». Официальный представитель завода на территории Российской Федерации',
-    phone: '8 (495) 147 44 85',
-    mobile: '8 909 960 22 37',
-    email: 'info@groupgis.ru',
-    website: 'https://groupgis.ru/',
-    address: '143082, Московская область, г.о. Одинцовский, д. Раздоры тер. Рублево-Успенское шоссе, км. 1-й, д.1, оф.206',
-  },
-  {
-    name: 'КОМПЛЕКСНОЕ СНАБЖЕНИЕ',
-    description: 'ООО "КОМПЛЕКСНОЕ СНАБЖЕНИЕ" - официальный представитель завода на территории РФ',
-    phone: '8-800-550-17-56',
-    email: 'sales@intsupply.ru',
-    website: 'http://intsupply.ru/',
-    address: '197341, город Санкт-Петербург, Коломяжский пр-кт, д. 28 к. 3 литер а, помещ. 19н, кабинет 7',
-  },
-  {
-    name: 'ДИНАМИКА',
-    description: 'Инженерные системы: тепло и вода с комфортом',
-    phone: '+7912 241 2346',
-    email: 'dinamika.teplo@gmail.com',
-    address: '620023 г. Екатеринбург, ул. Зимняя, 22',
-  },
-  {
-    name: 'ВАРМОКОМ',
-    description: 'Компания ВАРМОКОМ является официальным представителем производителя гибких предварительно изолированных труб (ГПИ-труб) ООО "Изоком Пласт" в Тверской области и на территории Российской Федерации.',
-    phone: '+7 920 689 29 69',
-    email: 'warmocom@yandex.ru',
-    website: 'https://warmocom.ru/',
-    address: 'Российская Федерация, г. Тверь, ул. Ерофеева, д. 7, корп. 2, кв. 21',
-  },
-  {
-    name: 'КОНЕКС',
-    description: 'ООО "КОНЕКС"',
-    email: 'konexspb@gmail.com',
-    website: 'http://konex.spb.ru',
-    address: '196066, г. Санкт-Петербург, Московский пр-кт, д.212, литера А, помещение 27, офис 6033-1',
-  },
-  {
-    name: 'ЭНЕРГОСИСТЕМА',
-    phone: '+7 (994) 1080108',
-    phone2: '+7 (423) 2712668',
-    email: 'energydv@bk.ru',
-    website: 'https://izocomflex.ru/',
-    address: '690105 г. Владивосток ул. Полковника Фесюна 20, 211',
-  },
-  {
-    name: 'Компания СпецПоток',
-    description: 'ООО "СпецПоток" - официальный представитель завода на территории РФ',
-    phone: '+7 (952) 206-01-61',
-    mobile: '+7 (981) 201-01-03',
-    email: 'info@specpotok.com',
-    website: 'https://specpotok.com/',
-    address: 'РФ, 199406, Санкт-Петербург, улица Опочинина, дом 16, литера А, помещение 6-Н, кабинет №30',
-  },
-  {
-    name: 'ТВК Пластик',
-    description: 'Официальный представитель завода на территории Российской Федерации',
-    email: 'tvkplastic@mail.ru',
-    website: 'https://tvkplastic.ru/',
-    address: '121351, г. Москва, ул. Екатерины Будановой, д. 1',
-    hours: 'Пн–Пт: 8:00 – 17:00',
-  },
-];
-
-interface Dealer {
-  name: string;
-  description?: string;
-  phone?: string;
-  phone2?: string;
-  mobile?: string;
-  email?: string;
-  website?: string;
-  address: string;
-  hours?: string;
 }
 
 function DealerCard({ dealer }: { dealer: Dealer }) {
