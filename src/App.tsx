@@ -15,6 +15,7 @@ import ProjectDetailPage from './pages/ProjectDetailPage';
 import NewsPage from './pages/NewsPage';
 import NewsDetailPage from './pages/NewsDetailPage';
 import ContactsPage from './pages/ContactsPage';
+import SalesDepartmentPage from './pages/SalesDepartmentPage';
 import RequestPage from './pages/RequestPage';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -41,6 +42,7 @@ export default function App() {
             <Route path="/news" element={<NewsPage />} />
             <Route path="/news/:slug" element={<NewsDetailPage />} />
             <Route path="/contacts" element={<ContactsPage />} />
+            <Route path="/contacts/sales" element={<SalesDepartmentPage />} />
             <Route path="/request" element={<RequestPage />} />
           </Routes>
         </main>
