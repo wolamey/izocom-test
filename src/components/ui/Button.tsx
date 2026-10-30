@@ -17,8 +17,8 @@ interface BaseButtonProps {
 const variantClasses: Record<ButtonVariant, string> = {
   primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-lg shadow-brand-600/20 active:bg-brand-800',
   secondary: 'bg-gray-900 text-white hover:bg-gray-800 active:bg-gray-950',
-  outline: 'bg-white text-gray-700 border border-gray-200 hover:border-brand-300 hover:text-brand-600 active:bg-gray-50',
-  ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 hover:text-brand-600 active:bg-gray-200',
+  outline: 'bg-white/5 text-white border border-white/10 hover:border-brand-500/30 hover:bg-white/10 active:bg-white/5',
+  ghost: 'bg-transparent text-gray-300 hover:bg-white/5 hover:text-brand-400 active:bg-white/10',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

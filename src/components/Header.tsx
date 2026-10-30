@@ -270,10 +270,10 @@ export default function Header() {
       {/* Mobile menu */}
       <div
         className={`lg:hidden bg-gray-900 border-t border-white/5 overflow-hidden transition-all duration-300 ${
-          mobileOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
+          mobileOpen ? 'max-h-[85vh] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-4 py-4 space-y-1 max-h-[70vh] overflow-y-auto">
+        <div className="px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
           {navItems.map(item => (
             <div key={item.name}>
               {item.path ? (
@@ -295,19 +295,19 @@ export default function Header() {
                       className="flex items-center gap-3 px-4 py-2.5 ml-2 rounded-lg text-sm text-gray-300 hover:text-brand-400 hover:bg-white/5 transition-colors"
                     >
                       <span className="text-brand-400">{sub.icon}</span>
-                      {sub.name}
+                      <span className="truncate">{sub.name}</span>
                     </Link>
                   ))}
                 </>
               )}
             </div>
           ))}
-          <div className="pt-3 border-t border-white/5 mt-3">
-            <a href="tel:+74951234567" className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-300">
+          <div className="pt-3 border-t border-white/5 mt-3 space-y-2">
+            <a href="tel:+74951234567" className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">
               <Phone size={16} />
-              +7 (495) 123-45-67
+              <span className="truncate">+7 (495) 123-45-67</span>
             </a>
-            <Link to="/request" className="flex items-center justify-center gap-2 mt-2 px-4 py-3 bg-brand-600 text-white text-sm font-medium rounded-lg">
+            <Link to="/request" className="flex items-center justify-center gap-2 px-4 py-3 bg-brand-600 text-white text-sm font-medium rounded-lg hover:bg-brand-700 transition-colors">
               <FileText size={16} />
               Запросить расчёт
             </Link>
