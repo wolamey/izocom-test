@@ -109,7 +109,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" style={{ height: 'calc(100vh - 116px)', minHeight: '600px' }}>
+    <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-[600px] lg:h-[calc(100vh-116px)]">
       {/* Subtle background grid */}
       <div className="absolute inset-0 pointer-events-none opacity-20" style={{
         backgroundImage: `
@@ -126,13 +126,13 @@ export default function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-8  h-full">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0 lg:h-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:h-full">
           {/* Left side — animated text */}
-          <div className="relative z-10 self-center">
+          <div className="relative z-10">
             <div
               key={currentSlide + '-badge'}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium rounded-full mb-5 animate-fade-in-up"
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs sm:text-sm font-medium rounded-full mb-4 sm:mb-5 animate-fade-in-up"
             >
               <Zap size={14} />
               Производство с 2005 года
@@ -140,12 +140,12 @@ export default function HeroSection() {
 
             <h1
               key={currentSlide + '-title'}
-              className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-4"
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-3 sm:mb-4"
             >
               {slide.title.split(' ').map((word, i) => (
                 <span
                   key={`${currentSlide}-${i}`}
-                  className="inline-block mr-3 animate-slide-in-word"
+                  className="inline-block mr-2 sm:mr-3 animate-slide-in-word"
                   style={{ animationDelay: `${100 + i * 100}ms` }}
                 >
                   {i === slide.title.split(' ').length - 1 ? (
@@ -162,7 +162,7 @@ export default function HeroSection() {
 
             <p
               key={currentSlide + '-subtitle'}
-              className="text-xl text-gray-300 mb-2 animate-fade-in-up"
+              className="text-base sm:text-xl text-gray-300 mb-2 animate-fade-in-up"
               style={{ animationDelay: '300ms' }}
             >
               {slide.subtitle}
@@ -170,7 +170,7 @@ export default function HeroSection() {
 
             <p
               key={currentSlide + '-desc'}
-              className="text-lg text-gray-400 mb-6 leading-relaxed max-w-lg animate-fade-in-up"
+              className="text-sm sm:text-lg text-gray-400 mb-4 sm:mb-6 leading-relaxed max-w-lg animate-fade-in-up"
               style={{ animationDelay: '400ms' }}
             >
               {slide.description}
@@ -186,6 +186,7 @@ export default function HeroSection() {
                 variant="primary"
                 size="lg"
                 iconRight={<ArrowRight size={18} />}
+                fullWidth
               >
                 Каталог продукции
               </LinkButton>
@@ -193,13 +194,76 @@ export default function HeroSection() {
                 to="/request"
                 variant="outline"
                 size="lg"
+                fullWidth
               >
                 Запросить расчёт
               </LinkButton>
             </div>
           </div>
 
-          {/* Right side — semicircle slider */}
+          {/* Right side — Mobile slider */}
+          <div className="lg:hidden mt-8">
+            <div className="relative">
+              {/* Mobile card */}
+              <div className={`relative bg-gray-800 rounded-2xl p-4 transition-all duration-500 ${
+                'shadow-2xl shadow-brand-600/30 border-2 border-brand-500/50'
+              }`}>
+                <div className="absolute -top-2 -right-2 w-3 h-3 bg-brand-500 rounded-full animate-pulse" />
+                <ProductImage type={slide.image} className="aspect-[4/3] rounded-xl" />
+                <div className="mt-3 grid grid-cols-3 gap-1.5">
+                  {slide.stats.map((stat, j) => (
+                    <div key={j} className="text-center p-1.5 rounded-lg bg-brand-500/20">
+                      <div className="text-sm font-bold text-brand-400">{stat.value}</div>
+                      <div className="text-[9px] text-gray-500">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Mobile navigation */}
+              <div className="flex items-center justify-center gap-3 mt-4">
+                <button
+                  onClick={prevSlide}
+                  disabled={isAnimating}
+                  className="w-10 h-10 bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg border border-white/10 flex items-center justify-center text-gray-300 hover:text-brand-400 hover:border-brand-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Предыдущий слайд"
+                >
+                  <ArrowLeft size={16} />
+                </button>
+                
+                <div className="flex items-center gap-2">
+                  {slides.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        if (!isAnimating) {
+                          setIsAnimating(true);
+                          setCurrentSlide(i);
+                          setTimeout(() => setIsAnimating(false), 1000);
+                        }
+                      }}
+                      className={`transition-all duration-300 rounded-full ${
+                        i === currentSlide
+                          ? 'w-8 h-2 bg-brand-500'
+                          : 'w-2 h-2 bg-gray-600 hover:bg-gray-500'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={nextSlide}
+                  disabled={isAnimating}
+                  className="w-10 h-10 bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg border border-white/10 flex items-center justify-center text-gray-300 hover:text-brand-400 hover:border-brand-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Следующий слайд"
+                >
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right side — Desktop semicircle slider */}
           <div className="hidden lg:block relative h-full max-h-[550px]">
             {/* Semicircle track */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.1 }}>

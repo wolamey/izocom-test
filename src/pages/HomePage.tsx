@@ -23,7 +23,7 @@ export default function HomePage() {
       {/* <HeroSearchSection /> */}
 
       {/* Categories — чёрный фон */}
-      <section className="relative bg-gray-900 py-20 lg:py-28 overflow-hidden">
+      <section className="relative bg-gray-900 py-12 sm:py-16 lg:py-28 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-600/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-600/5 rounded-full blur-3xl" />
@@ -34,27 +34,27 @@ export default function HomePage() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between mb-12 lg:mb-16 gap-4">
+          <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between mb-8 sm:mb-12 lg:mb-16 gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 text-white/70 text-sm font-medium rounded-full mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 text-white/70 text-xs sm:text-sm font-medium rounded-full mb-3 sm:mb-4">
                 <Layers size={14} />
                 Каталог
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">Что производим</h2>
-              <p className="text-gray-400 max-w-lg">Полный ассортимент продукции для строительства и модернизации тепловых сетей</p>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3">Что производим</h2>
+              <p className="text-sm sm:text-base text-gray-400 max-w-lg">Полный ассортимент продукции для строительства и модернизации тепловых сетей</p>
             </div>
             <LinkButton
               to="/products"
               variant="ghost"
               size="md"
               iconRight={<ArrowRight size={16} />}
-              className="text-white/70 hover:text-white hover:bg-white/10 border border-white/10"
+              className="text-white/70 hover:text-white hover:bg-white/10 border border-white/10 text-sm sm:text-base"
             >
               Весь каталог
             </LinkButton>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
             {categories.map((cat, i) => (
               <Link
                 key={cat.id}
@@ -85,18 +85,18 @@ export default function HomePage() {
       </section>
 
       {/* Application areas — интерактивный список с SVG */}
-      <section className="py-20 lg:py-28 bg-gray-900 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-28 bg-gray-900 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/3 left-0 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">Области применения</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Наша продукция используется в различных отраслях промышленности и ЖКХ</p>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3">Области применения</h2>
+            <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto px-4">Наша продукция используется в различных отраслях промышленности и ЖКХ</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-start">
             {/* Left — interactive list */}
             <div className="space-y-3">
               {[
@@ -201,21 +201,21 @@ export default function HomePage() {
       </section>
 
       {/* Advantages — аккордеон */}
-      <section className="relative bg-gray-900 py-20 lg:py-28 overflow-hidden">
+      <section className="relative bg-gray-900 py-12 sm:py-16 lg:py-28 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-600/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 text-white/70 text-sm font-medium rounded-full mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 text-white/70 text-xs sm:text-sm font-medium rounded-full mb-3 sm:mb-4">
               <Sparkles size={14} />
               Преимущества
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">Почему выбирают нас</h2>
-            <p className="text-gray-400 max-w-lg mx-auto">Качество, надёжность и комплексный подход к каждому проекту</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3">Почему выбирают нас</h2>
+            <p className="text-sm sm:text-base text-gray-400 max-w-lg mx-auto px-4">Качество, надёжность и комплексный подход к каждому проекту</p>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-3">
+          <div className="max-w-3xl mx-auto space-y-2 sm:space-y-3">
             {[
               { icon: Shield, title: 'Качество по ГОСТ', desc: 'Вся продукция сертифицирована и соответствует ГОСТ 30732-2006. Многоступенчатый контроль качества на каждом этапе производства.', stat: '100%', statLabel: 'соответствие ГОСТ' },
               { icon: Clock, title: '30 лет эксплуатации', desc: 'Подтверждённый срок службы предизолированных труб. Снижение аварийности тепловых сетей до 4 раз.', stat: '30+', statLabel: 'лет службы' },
@@ -230,25 +230,27 @@ export default function HomePage() {
               >
                 <button
                   onClick={() => setOpenAccordion(openAccordion === i ? null : i)}
-                  className="w-full flex items-center gap-4 p-5 text-left hover:bg-white/5 transition-colors"
+                  className="w-full flex items-center gap-2 sm:gap-4 p-3 sm:p-5 text-left hover:bg-white/5 transition-colors"
                 >
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
                     openAccordion === i ? 'bg-brand-500/30 scale-110' : 'bg-white/5'
                   }`}>
-                    <item.icon size={22} className={`transition-colors duration-300 ${openAccordion === i ? 'text-brand-400' : 'text-white/50'}`} />
+                    <item.icon size={18} className={`sm:hidden transition-colors duration-300 ${openAccordion === i ? 'text-brand-400' : 'text-white/50'}`} />
+                    <item.icon size={22} className={`hidden sm:block transition-colors duration-300 ${openAccordion === i ? 'text-brand-400' : 'text-white/50'}`} />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-white">{item.title}</h3>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-white text-sm sm:text-base truncate">{item.title}</h3>
                   </div>
                   <div className="text-right shrink-0">
-                    <div className={`text-2xl font-bold transition-colors duration-300 ${openAccordion === i ? 'text-white' : 'text-white/70'}`}>{item.stat}</div>
-                    <div className={`text-xs transition-colors duration-300 ${openAccordion === i ? 'text-brand-400' : 'text-gray-500'}`}>{item.statLabel}</div>
+                    <div className={`text-xl sm:text-2xl font-bold transition-colors duration-300 ${openAccordion === i ? 'text-white' : 'text-white/70'}`}>{item.stat}</div>
+                    <div className={`text-[10px] sm:text-xs transition-colors duration-300 ${openAccordion === i ? 'text-brand-400' : 'text-gray-500'}`}>{item.statLabel}</div>
                   </div>
-                  <ChevronDown size={20} className={`text-white/30 transition-transform duration-300 shrink-0 ${openAccordion === i ? 'rotate-180' : ''}`} />
+                  <ChevronDown size={18} className={`sm:hidden text-white/30 transition-transform duration-300 shrink-0 ${openAccordion === i ? 'rotate-180' : ''}`} />
+                  <ChevronDown size={20} className={`hidden sm:block text-white/30 transition-transform duration-300 shrink-0 ${openAccordion === i ? 'rotate-180' : ''}`} />
                 </button>
                 <div className={`overflow-hidden transition-all duration-300 ${openAccordion === i ? 'max-h-40' : 'max-h-0'}`}>
-                  <div className="px-5 pb-5 pl-20">
-                    <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                  <div className="px-3 sm:px-5 pb-3 sm:pb-5 pl-14 sm:pl-20">
+                    <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               </div>
@@ -258,24 +260,24 @@ export default function HomePage() {
       </section>
 
       {/* Stats showcase — нестандартный черный блок */}
-      <section className="relative bg-gray-900 py-20 lg:py-28 overflow-hidden">
+      <section className="relative bg-gray-900 py-12 sm:py-16 lg:py-28 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-600/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-3xl" />
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white mb-2 sm:mb-4 px-4">
               Цифры говорят <span className="text-brand-500">сами за себя</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-400 max-w-2xl mx-auto px-4">
               Более 18 лет мы создаём надёжные решения для тепловых сетей России
             </p>
           </div>
 
           {/* Animated stats grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
             {[
               { value: '50 000', unit: 'п.м.', label: 'труб произведено в 2024', color: 'from-red-500 to-orange-500' },
               { value: '60+', unit: '', label: 'регионов поставки', color: 'from-blue-500 to-cyan-500' },
@@ -284,18 +286,18 @@ export default function HomePage() {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 lg:p-8 hover:border-white/20 transition-all duration-500 overflow-hidden"
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-6 lg:p-8 hover:border-white/20 transition-all duration-500 overflow-hidden"
               >
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
                 
                 <div className="relative">
                   <div className="flex items-baseline gap-1 mb-2">
-                    <span className={`text-4xl lg:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                    <span className={`text-2xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
                       {stat.value}
                     </span>
                     {stat.unit && (
-                      <span className="text-2xl lg:text-3xl font-bold text-white/60">{stat.unit}</span>
+                      <span className="text-lg sm:text-2xl lg:text-3xl font-bold text-white/60">{stat.unit}</span>
                     )}
                   </div>
                   <p className="text-sm text-gray-400 leading-relaxed">{stat.label}</p>
@@ -308,14 +310,15 @@ export default function HomePage() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-6 py-3">
-              <span className="text-gray-400 text-sm">Хотите стать частью нашей статистики?</span>
+          <div className="mt-8 sm:mt-12 lg:mt-16 text-center px-4">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl sm:rounded-full px-4 sm:px-6 py-4 sm:py-3">
+              <span className="text-gray-400 text-xs sm:text-sm text-center">Хотите стать частью нашей статистики?</span>
               <LinkButton
                 to="/request"
                 variant="primary"
                 size="sm"
                 iconRight={<ArrowRight size={16} />}
+                fullWidth
               >
                 Начать проект
               </LinkButton>
@@ -325,22 +328,22 @@ export default function HomePage() {
       </section>
 
       {/* About us with YouTube */}
-      <section className="relative py-20 lg:py-28 bg-gray-900 overflow-hidden">
+      <section className="relative py-12 sm:py-16 lg:py-28 bg-gray-900 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/4 right-0 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 text-brand-400 text-sm font-medium rounded-full mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 text-brand-400 text-xs sm:text-sm font-medium rounded-full mb-3 sm:mb-4">
                 <Building2 size={14} />
                 О компании
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Изоком Пласт — надёжный партнёр</h2>
-              <p className="text-gray-400 mb-4 leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">Изоком Пласт — надёжный партнёр</h2>
+              <p className="text-sm sm:text-base text-gray-400 mb-3 sm:mb-4 leading-relaxed">
                 Компания «Изоком Пласт» — российский производитель предизолированных стальных труб, фасонных изделий и комплектующих для строительства тепловых сетей.
               </p>
-              <p className="text-gray-400 mb-6 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6 leading-relaxed">
                 Мы работаем с 2005 года и за это время поставили продукцию для объектов теплоснабжения в более чем 60 регионах России. Наше производство оснащено современным оборудованием и соответствует требованиям ГОСТ 30732-2006.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
@@ -349,6 +352,7 @@ export default function HomePage() {
                   variant="primary"
                   size="md"
                   iconRight={<ArrowRight size={16} />}
+                  fullWidth
                 >
                   Подробнее о компании
                 </LinkButton>
@@ -356,6 +360,7 @@ export default function HomePage() {
                   to="/contacts"
                   variant="outline"
                   size="md"
+                  fullWidth
                 >
                   Связаться с нами
                 </LinkButton>
@@ -381,19 +386,19 @@ export default function HomePage() {
       </section>
 
       {/* Production */}
-      <section className="relative py-20 lg:py-28 bg-gray-800 overflow-hidden">
+      <section className="relative py-12 sm:py-16 lg:py-28 bg-gray-800 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-6">Собственное производство</h2>
-              <p className="text-gray-400 mb-6 leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">Собственное производство</h2>
+              <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6 leading-relaxed">
                 Производственная площадка оснащена современным оборудованием для изоляции труб диаметром от 57 до 1020 мм.
                 Контроль качества на каждом этапе — от подготовки стальной трубы до нанесения защитной оболочки.
               </p>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {[
                   'Центрирование трубы перед заливкой ППУ',
                   'Входной контроль стальных труб и компонентов',
@@ -401,8 +406,9 @@ export default function HomePage() {
                   'Маркировка каждой трубы с паспортом качества',
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle2 size={20} className="text-green-500 shrink-0 mt-0.5" />
-                    <span className="text-gray-300">{item}</span>
+                    <CheckCircle2 size={18} className="sm:hidden text-green-500 shrink-0 mt-0.5" />
+                    <CheckCircle2 size={20} className="hidden sm:block text-green-500 shrink-0 mt-0.5" />
+                    <span className="text-sm sm:text-base text-gray-300">{item}</span>
                   </div>
                 ))}
               </div>
@@ -411,32 +417,36 @@ export default function HomePage() {
                 variant="ghost"
                 size="md"
                 iconRight={<ArrowRight size={16} />}
-                className="mt-8 text-gray-300 hover:text-brand-400"
+                className="mt-6 sm:mt-8 text-gray-300 hover:text-brand-400 text-sm sm:text-base"
               >
                 Подробнее о производстве
               </LinkButton>
             </div>
-            <div className="bg-gray-900 rounded-2xl p-6 border border-white/10">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/5 rounded-xl p-6 text-center">
-                  <Factory size={32} className="mx-auto text-brand-500 mb-2" />
-                  <div className="text-2xl font-bold text-white">5000+</div>
-                  <div className="text-sm text-gray-400">м² производства</div>
+            <div className="bg-gray-900 rounded-2xl p-4 sm:p-6 border border-white/10">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="bg-white/5 rounded-xl p-4 sm:p-6 text-center">
+                  <Factory size={24} className="sm:hidden mx-auto text-brand-500 mb-2" />
+                  <Factory size={32} className="hidden sm:block mx-auto text-brand-500 mb-2" />
+                  <div className="text-xl sm:text-2xl font-bold text-white">5000+</div>
+                  <div className="text-xs sm:text-sm text-gray-400">м² производства</div>
                 </div>
-                <div className="bg-white/5 rounded-xl p-6 text-center">
-                  <ThermometerSun size={32} className="mx-auto text-blue-400 mb-2" />
-                  <div className="text-2xl font-bold text-white">50 000</div>
-                  <div className="text-sm text-gray-400">п.м. в год</div>
+                <div className="bg-white/5 rounded-xl p-4 sm:p-6 text-center">
+                  <ThermometerSun size={24} className="sm:hidden mx-auto text-blue-400 mb-2" />
+                  <ThermometerSun size={32} className="hidden sm:block mx-auto text-blue-400 mb-2" />
+                  <div className="text-xl sm:text-2xl font-bold text-white">50 000</div>
+                  <div className="text-xs sm:text-sm text-gray-400">п.м. в год</div>
                 </div>
-                <div className="bg-white/5 rounded-xl p-6 text-center">
-                  <Award size={32} className="mx-auto text-green-400 mb-2" />
-                  <div className="text-2xl font-bold text-white">18</div>
-                  <div className="text-sm text-gray-400">лет на рынке</div>
+                <div className="bg-white/5 rounded-xl p-4 sm:p-6 text-center">
+                  <Award size={24} className="sm:hidden mx-auto text-green-400 mb-2" />
+                  <Award size={32} className="hidden sm:block mx-auto text-green-400 mb-2" />
+                  <div className="text-xl sm:text-2xl font-bold text-white">18</div>
+                  <div className="text-xs sm:text-sm text-gray-400">лет на рынке</div>
                 </div>
-                <div className="bg-white/5 rounded-xl p-6 text-center">
-                  <Truck size={32} className="mx-auto text-amber-400 mb-2" />
-                  <div className="text-2xl font-bold text-white">60+</div>
-                  <div className="text-sm text-gray-400">регионов доставки</div>
+                <div className="bg-white/5 rounded-xl p-4 sm:p-6 text-center">
+                  <Truck size={24} className="sm:hidden mx-auto text-amber-400 mb-2" />
+                  <Truck size={32} className="hidden sm:block mx-auto text-amber-400 mb-2" />
+                  <div className="text-xl sm:text-2xl font-bold text-white">60+</div>
+                  <div className="text-xs sm:text-sm text-gray-400">регионов доставки</div>
                 </div>
               </div>
             </div>
@@ -445,41 +455,42 @@ export default function HomePage() {
       </section>
 
       {/* АПТС — член ассоциации */}
-      <section className="relative py-16 bg-gray-900 border-t border-white/5">
+      <section className="relative py-12 sm:py-16 bg-gray-900 border-t border-white/5">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-600/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 lg:p-12 border border-white/10">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 sm:p-8 lg:p-12 border border-white/10">
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium rounded-full mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs sm:text-sm font-medium rounded-full mb-3 sm:mb-4">
                   <Award size={14} />
                   Членство в ассоциации
                 </div>
-                <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4">
                   ООО "Изоком Пласт" — член Ассоциации производителей трубопроводных систем
                 </h2>
-                <p className="text-gray-400 mb-6">
+                <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6">
                   Мы являемся активным участником профессионального сообщества, что подтверждает наш статус надёжного производителя.
                 </p>
                 <a
                   href="https://rapts.ru/tpost/sg46tkjm71-v-apts-vstupili-9-novih-organizatsii"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-brand-400 font-medium hover:gap-3 transition-all"
+                  className="inline-flex items-center gap-2 text-brand-400 font-medium hover:gap-3 transition-all text-sm sm:text-base"
                 >
                   Подробнее на сайте АПТС <ArrowRight size={16} />
                 </a>
               </div>
               <div className="flex justify-center lg:justify-end">
-                <div className="w-48 h-48 bg-gray-900 rounded-2xl shadow-lg flex items-center justify-center border border-white/10">
+                <div className="w-40 h-40 sm:w-48 sm:h-48 bg-gray-900 rounded-2xl shadow-lg flex items-center justify-center border border-white/10">
                   <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-3 bg-brand-500/20 rounded-full flex items-center justify-center">
-                      <Award size={32} className="text-brand-400" />
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-2 sm:mb-3 bg-brand-500/20 rounded-full flex items-center justify-center">
+                      <Award size={24} className="sm:hidden text-brand-400" />
+                      <Award size={32} className="hidden sm:block text-brand-400" />
                     </div>
-                    <div className="text-sm font-semibold text-white">АПТС</div>
-                    <div className="text-xs text-gray-400">Ассоциация производителей<br/>трубопроводных систем</div>
+                    <div className="text-xs sm:text-sm font-semibold text-white">АПТС</div>
+                    <div className="text-[10px] sm:text-xs text-gray-400">Ассоциация производителей<br/>трубопроводных систем</div>
                   </div>
                 </div>
               </div>
@@ -489,21 +500,21 @@ export default function HomePage() {
       </section>
 
       {/* Наши представительства */}
-      <section className="relative py-20 lg:py-28 bg-gray-800">
+      <section className="relative py-12 sm:py-16 lg:py-28 bg-gray-800">
         <div className="absolute inset-0">
           <div className="absolute top-1/3 right-0 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 text-brand-400 text-sm font-medium rounded-full mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 text-brand-400 text-xs sm:text-sm font-medium rounded-full mb-3 sm:mb-4">
               <Globe size={14} />
               География
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">Наши представительства</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Официальные представители завода на территории Российской Федерации</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3">Наши представительства</h2>
+            <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto px-4">Официальные представители завода на территории Российской Федерации</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {dealers.map((dealer, i) => (
               <DealerCard key={i} dealer={dealer} />
             ))}
@@ -512,31 +523,34 @@ export default function HomePage() {
       </section>
 
       {/* CTA / Request form */}
-      <section className="relative py-16 lg:py-20 bg-gray-900">
+      <section className="relative py-12 sm:py-16 lg:py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 lg:p-12 border border-white/10">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 sm:p-8 lg:p-12 border border-white/10">
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
               <div>
-                <h2 className="text-3xl font-bold text-white mb-4">Запросить расчёт</h2>
-                <p className="text-gray-300 mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">Запросить расчёт</h2>
+                <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
                   Отправьте заявку — мы подберём продукцию, рассчитаем стоимость и подготовим коммерческое предложение.
                 </p>
-                <div className="space-y-3 text-sm text-gray-400">
+                <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-400">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={16} className="text-green-400" />
+                    <CheckCircle2 size={14} className="sm:hidden text-green-400" />
+                    <CheckCircle2 size={16} className="hidden sm:block text-green-400" />
                     Ответ в течение 1 рабочего дня
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={16} className="text-green-400" />
+                    <CheckCircle2 size={14} className="sm:hidden text-green-400" />
+                    <CheckCircle2 size={16} className="hidden sm:block text-green-400" />
                     Расчёт по спецификации заказчика
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={16} className="text-green-400" />
+                    <CheckCircle2 size={14} className="sm:hidden text-green-400" />
+                    <CheckCircle2 size={16} className="hidden sm:block text-green-400" />
                     Технические консультации бесплатно
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-800 rounded-xl p-6 border border-white/10">
+              <div className="bg-gray-800 rounded-xl p-4 sm:p-6 border border-white/10">
                 <RequestForm compact />
               </div>
             </div>
@@ -618,47 +632,53 @@ function CategoryIcon({ type }: { type: string }) {
 
 function DealerCard({ dealer }: { dealer: Dealer }) {
   return (
-    <div className="bg-gray-900 rounded-xl p-6 border border-white/10 hover:border-brand-500/30 hover:shadow-lg hover:shadow-brand-600/10 transition-all duration-300">
-      <h3 className="text-lg font-bold text-white mb-2">{dealer.name}</h3>
-      {dealer.description && <p className="text-sm text-gray-400 mb-4">{dealer.description}</p>}
+    <div className="bg-gray-900 rounded-xl p-4 sm:p-6 border border-white/10 hover:border-brand-500/30 hover:shadow-lg hover:shadow-brand-600/10 transition-all duration-300">
+      <h3 className="text-base sm:text-lg font-bold text-white mb-2">{dealer.name}</h3>
+      {dealer.description && <p className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4">{dealer.description}</p>}
       
-      <div className="space-y-2 text-sm">
+      <div className="space-y-2 text-xs sm:text-sm">
         {dealer.phone && (
           <div className="flex items-center gap-2 text-gray-300">
-            <Phone size={14} className="text-brand-400 shrink-0" />
-            <a href={`tel:${dealer.phone.replace(/\s/g, '')}`} className="hover:text-brand-400 transition-colors">{dealer.phone}</a>
+            <Phone size={12} className="sm:hidden text-brand-400 shrink-0" />
+            <Phone size={14} className="hidden sm:block text-brand-400 shrink-0" />
+            <a href={`tel:${dealer.phone.replace(/\s/g, '')}`} className="hover:text-brand-400 transition-colors break-all">{dealer.phone}</a>
           </div>
         )}
         {dealer.phone2 && (
           <div className="flex items-center gap-2 text-gray-300">
-            <Phone size={14} className="text-brand-400 shrink-0" />
-            <a href={`tel:${dealer.phone2.replace(/\s/g, '')}`} className="hover:text-brand-400 transition-colors">{dealer.phone2}</a>
+            <Phone size={12} className="sm:hidden text-brand-400 shrink-0" />
+            <Phone size={14} className="hidden sm:block text-brand-400 shrink-0" />
+            <a href={`tel:${dealer.phone2.replace(/\s/g, '')}`} className="hover:text-brand-400 transition-colors break-all">{dealer.phone2}</a>
           </div>
         )}
         {dealer.mobile && (
           <div className="flex items-center gap-2 text-gray-300">
-            <Phone size={14} className="text-brand-400 shrink-0" />
-            <span>{dealer.mobile}</span>
+            <Phone size={12} className="sm:hidden text-brand-400 shrink-0" />
+            <Phone size={14} className="hidden sm:block text-brand-400 shrink-0" />
+            <span className="break-all">{dealer.mobile}</span>
           </div>
         )}
         {dealer.email && (
           <div className="flex items-center gap-2 text-gray-300">
-            <Mail size={14} className="text-brand-400 shrink-0" />
-            <a href={`mailto:${dealer.email}`} className="hover:text-brand-400 transition-colors">{dealer.email}</a>
+            <Mail size={12} className="sm:hidden text-brand-400 shrink-0" />
+            <Mail size={14} className="hidden sm:block text-brand-400 shrink-0" />
+            <a href={`mailto:${dealer.email}`} className="hover:text-brand-400 transition-colors break-all">{dealer.email}</a>
           </div>
         )}
         {dealer.website && (
           <div className="flex items-center gap-2 text-gray-300">
-            <Globe size={14} className="text-brand-400 shrink-0" />
-            <a href={dealer.website} target="_blank" rel="noopener noreferrer" className="hover:text-brand-400 transition-colors">{dealer.website.replace('https://', '').replace('http://', '')}</a>
+            <Globe size={12} className="sm:hidden text-brand-400 shrink-0" />
+            <Globe size={14} className="hidden sm:block text-brand-400 shrink-0" />
+            <a href={dealer.website} target="_blank" rel="noopener noreferrer" className="hover:text-brand-400 transition-colors break-all">{dealer.website.replace('https://', '').replace('http://', '')}</a>
           </div>
         )}
         <div className="flex items-start gap-2 text-gray-400 pt-2">
-          <MapPin size={14} className="text-brand-400 shrink-0 mt-0.5" />
-          <span className="text-xs">{dealer.address}</span>
+          <MapPin size={12} className="sm:hidden text-brand-400 shrink-0 mt-0.5" />
+          <MapPin size={14} className="hidden sm:block text-brand-400 shrink-0 mt-0.5" />
+          <span className="text-[10px] sm:text-xs break-words">{dealer.address}</span>
         </div>
         {dealer.hours && (
-          <div className="text-xs text-gray-500 pt-1">{dealer.hours}</div>
+          <div className="text-[10px] sm:text-xs text-gray-500 pt-1">{dealer.hours}</div>
         )}
       </div>
       
@@ -667,9 +687,10 @@ function DealerCard({ dealer }: { dealer: Dealer }) {
           href={dealer.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 mt-4 text-sm text-brand-400 font-medium hover:gap-2 transition-all"
+          className="inline-flex items-center gap-1 mt-3 sm:mt-4 text-xs sm:text-sm text-brand-400 font-medium hover:gap-2 transition-all"
         >
-          Подробнее <ArrowRight size={14} />
+          Подробнее <ArrowRight size={12} className="sm:hidden" />
+          <ArrowRight size={14} className="hidden sm:block" />
         </a>
       )}
     </div>

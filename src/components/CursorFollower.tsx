@@ -5,8 +5,24 @@ export default function CursorFollower() {
   const targetRef = useRef({ x: -200, y: -200 });
   const currentRef = useRef({ x: -200, y: -200 });
   const rafRef = useRef<number>();
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile/touch device
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 1024px)').matches || 'ontouchstart' in window);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Don't run on mobile devices
+    if (isMobile) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       targetRef.current = { x: e.clientX, y: e.clientY };
     };
@@ -29,13 +45,18 @@ export default function CursorFollower() {
       window.removeEventListener('mousemove', handleMouseMove);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, []);
+  }, [isMobile]);
+
+  // Don't render on mobile devices
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <>
       {/* Для светлых фонов */}
       <div
-        className="fixed pointer-events-none z-[1] mix-blend-multiply"
+        className="fixed pointer-events-none z-[1] mix-blend-multiply hidden lg:block"
         style={{
           left: pos.x,
           top: pos.y,
@@ -59,7 +80,7 @@ export default function CursorFollower() {
       
       {/* Для темных фонов */}
       <div
-        className="fixed pointer-events-none z-[1] mix-blend-screen"
+        className="fixed pointer-events-none z-[1] mix-blend-screen hidden lg:block"
         style={{
           left: pos.x,
           top: pos.y,
