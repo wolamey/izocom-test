@@ -636,40 +636,40 @@ function DealerCard({ dealer }: { dealer: Dealer }) {
       <h3 className="text-base sm:text-lg font-bold text-white mb-2">{dealer.name}</h3>
       {dealer.description && <p className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4">{dealer.description}</p>}
       
-      <div className="space-y-2 text-xs sm:text-sm">
+      <div className=" text-xs sm:text-sm flex flex-col gap-3">
         {dealer.phone && (
-          <div className="flex items-center gap-2 text-gray-300">
+          <div className="flex  gap-2 text-gray-300">
             <Phone size={12} className="sm:hidden text-brand-400 shrink-0" />
             <Phone size={14} className="hidden sm:block text-brand-400 shrink-0" />
-            <a href={`tel:${dealer.phone.replace(/\s/g, '')}`} className="hover:text-brand-400 transition-colors break-all">{dealer.phone}</a>
+            <a href={`tel:${dealer.phone.replace(/\s/g, '')}`} className="hover:text-brand-400 transition-colors break-all min-h-0!">{dealer.phone}</a>
           </div>
         )}
         {dealer.phone2 && (
-          <div className="flex items-center gap-2 text-gray-300">
+          <div className="flex  gap-2 text-gray-300">
             <Phone size={12} className="sm:hidden text-brand-400 shrink-0" />
             <Phone size={14} className="hidden sm:block text-brand-400 shrink-0" />
-            <a href={`tel:${dealer.phone2.replace(/\s/g, '')}`} className="hover:text-brand-400 transition-colors break-all">{dealer.phone2}</a>
+            <a href={`tel:${dealer.phone2.replace(/\s/g, '')}`} className="hover:text-brand-400 transition-colors break-all min-h-0!">{dealer.phone2}</a>
           </div>
         )}
         {dealer.mobile && (
-          <div className="flex items-center gap-2 text-gray-300">
+          <div className="flex  gap-2 text-gray-300">
             <Phone size={12} className="sm:hidden text-brand-400 shrink-0" />
             <Phone size={14} className="hidden sm:block text-brand-400 shrink-0" />
             <span className="break-all">{dealer.mobile}</span>
           </div>
         )}
         {dealer.email && (
-          <div className="flex items-center gap-2 text-gray-300">
+          <div className="flex  gap-2 text-gray-300">
             <Mail size={12} className="sm:hidden text-brand-400 shrink-0" />
             <Mail size={14} className="hidden sm:block text-brand-400 shrink-0" />
-            <a href={`mailto:${dealer.email}`} className="hover:text-brand-400 transition-colors break-all">{dealer.email}</a>
+            <a href={`mailto:${dealer.email}`} className="hover:text-brand-400 transition-colors break-all min-h-0!">{dealer.email}</a>
           </div>
         )}
         {dealer.website && (
-          <div className="flex items-center gap-2 text-gray-300">
+          <div className="flex  gap-2 text-gray-300">
             <Globe size={12} className="sm:hidden text-brand-400 shrink-0" />
             <Globe size={14} className="hidden sm:block text-brand-400 shrink-0" />
-            <a href={dealer.website} target="_blank" rel="noopener noreferrer" className="hover:text-brand-400 transition-colors break-all">{dealer.website.replace('https://', '').replace('http://', '')}</a>
+            <a href={dealer.website} target="_blank" rel="noopener noreferrer" className="hover:text-brand-400 transition-colors break-all min-h-0!">{dealer.website.replace('https://', '').replace('http://', '')}</a>
           </div>
         )}
         <div className="flex items-start gap-2 text-gray-400 pt-2">
