@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Clock, Truck, Award, Factory, Zap, ThermometerSun, CheckCircle2, Sparkles, Layers, ChevronDown, MapPin, Phone, Mail, Globe, Building2 } from 'lucide-react';
+import { ArrowRight, Shield, Clock, Truck, Award, Factory, Zap, ThermometerSun, CheckCircle2, Sparkles, Layers, ChevronDown, MapPin, Phone, Mail, Globe, Building2, FileText } from 'lucide-react';
 import { categories } from '../data/products';
 import { dealers } from '../data/dealers';
 import type { Dealer } from '../data/dealers';
@@ -523,35 +523,106 @@ export default function HomePage() {
       </section>
 
       {/* CTA / Request form */}
-      <section className="relative py-12 sm:py-16 lg:py-20 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 sm:p-8 lg:p-12 border border-white/10">
-            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+      <section className="relative py-16 sm:py-20 lg:py-28 bg-gray-900 overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-600/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute inset-0 opacity-20" style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+          }} />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 rounded-3xl p-6 sm:p-8 lg:p-12 border border-white/10 shadow-2xl shadow-brand-600/10">
+            {/* Decorative corner accents */}
+            <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-brand-500/20 to-transparent rounded-tl-3xl" />
+            <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-brand-500/20 to-transparent rounded-br-3xl" />
+
+            <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              {/* Left side - Info */}
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">Запросить расчёт</h2>
-                <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs sm:text-sm font-medium rounded-full mb-4 sm:mb-6">
+                  <Zap size={14} />
+                  Быстрый расчёт
+                </div>
+
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+                  Получите расчёт <span className="text-brand-500">за 24 часа</span>
+                </h2>
+
+                <p className="text-sm sm:text-base lg:text-lg text-gray-300 mb-6 sm:mb-8 leading-relaxed">
                   Отправьте заявку — мы подберём продукцию, рассчитаем стоимость и подготовим коммерческое предложение.
                 </p>
-                <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-400">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="sm:hidden text-green-400" />
-                    <CheckCircle2 size={16} className="hidden sm:block text-green-400" />
-                    Ответ в течение 1 рабочего дня
+
+                {/* Benefits list */}
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <div className="flex items-start gap-3 group">
+                    <div className="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <CheckCircle2 size={18} className="text-green-400" />
+                    </div>
+                    <div>
+                      <div className="text-white font-semibold text-sm sm:text-base mb-1">Ответ в течение 1 рабочего дня</div>
+                      <div className="text-xs sm:text-sm text-gray-400">Оперативная обработка всех заявок</div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="sm:hidden text-green-400" />
-                    <CheckCircle2 size={16} className="hidden sm:block text-green-400" />
-                    Расчёт по спецификации заказчика
+
+                  <div className="flex items-start gap-3 group">
+                    <div className="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <CheckCircle2 size={18} className="text-blue-400" />
+                    </div>
+                    <div>
+                      <div className="text-white font-semibold text-sm sm:text-base mb-1">Расчёт по спецификации заказчика</div>
+                      <div className="text-xs sm:text-sm text-gray-400">Индивидуальный подход к каждому проекту</div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="sm:hidden text-green-400" />
-                    <CheckCircle2 size={16} className="hidden sm:block text-green-400" />
-                    Технические консультации бесплатно
+
+                  <div className="flex items-start gap-3 group">
+                    <div className="w-10 h-10 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <CheckCircle2 size={18} className="text-purple-400" />
+                    </div>
+                    <div>
+                      <div className="text-white font-semibold text-sm sm:text-base mb-1">Технические консультации бесплатно</div>
+                      <div className="text-xs sm:text-sm text-gray-400">Экспертная поддержка на каждом этапе</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                  <div className="bg-white/5 rounded-xl p-3 sm:p-4 text-center border border-white/10">
+                    <div className="text-xl sm:text-2xl font-bold text-brand-400 mb-1">500+</div>
+                    <div className="text-xs text-gray-400">Расчётов в месяц</div>
+                  </div>
+                  <div className="bg-white/5 rounded-xl p-3 sm:p-4 text-center border border-white/10">
+                    <div className="text-xl sm:text-2xl font-bold text-brand-400 mb-1">24ч</div>
+                    <div className="text-xs text-gray-400">Среднее время</div>
+                  </div>
+                  <div className="bg-white/5 rounded-xl p-3 sm:p-4 text-center border border-white/10">
+                    <div className="text-xl sm:text-2xl font-bold text-brand-400 mb-1">98%</div>
+                    <div className="text-xs text-gray-400">Довольных клиентов</div>
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-800 rounded-xl p-4 sm:p-6 border border-white/10">
-                <RequestForm compact />
+
+              {/* Right side - Form */}
+              <div className="relative">
+                {/* Glow effect behind form */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-brand-600/20 via-brand-500/10 to-brand-600/20 rounded-3xl blur-2xl" />
+                
+                <div className="relative bg-gray-800 rounded-2xl p-5 sm:p-6 lg:p-8 border border-white/10 shadow-xl">
+                  <div className="flex items-center gap-2 mb-4 sm:mb-6">
+                    <div className="w-8 h-8 bg-brand-500/20 rounded-lg flex items-center justify-center">
+                      <FileText size={16} className="text-brand-400" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-white">Форма заявки</h3>
+                  </div>
+                  <RequestForm compact />
+                </div>
               </div>
             </div>
           </div>
