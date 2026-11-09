@@ -62,7 +62,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-500">© 2024 Изоком Пласт. Все права защищены.</p>
+          <p className="text-sm text-gray-500">© 2026 Изоком Пласт. Все права защищены.</p>
           <div className="flex items-center gap-6 text-sm text-gray-500">
             <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
             <a href="#" className="hover:text-white transition-colors">Карта сайта</a>
