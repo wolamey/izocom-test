@@ -26,6 +26,7 @@ import ScrollToTop from './components/ScrollToTop';
 import AdminLoginPage from './pages/admin/AdminLoginPage';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminHomePageEditorPage from './pages/admin/AdminHomePageEditorPage';
+import AdminAboutPageEditorPage from './pages/admin/AdminAboutPageEditorPage';
 import {
   AdminCatalogCategoriesPage,
   AdminCatalogProductsPage,
@@ -46,7 +47,7 @@ export default function App() {
           <Route index element={<AdminHomePageEditorPage />} />
           <Route path="home-page" element={<AdminHomePageEditorPage />} />
           {/* Страницы сайта */}
-          <Route path="pages/about" element={<AdminPlaceholderPage title="О компании" description="Редактирование текстов и изображений страницы «О компании»" />} />
+          <Route path="pages/about" element={<AdminAboutPageEditorPage />} />
           <Route path="pages/energy" element={<AdminPlaceholderPage title="Энергоэффективность" description="Редактирование страницы «Энергоэффективность»" />} />
           <Route path="pages/about-pipes" element={<AdminPlaceholderPage title="Всё о трубах" description="Редактирование страницы «Всё о трубах»" />} />
           <Route path="pages/standards" element={<AdminPlaceholderPage title="Стандарты" description="Редактирование страницы «Стандарты»" />} />
