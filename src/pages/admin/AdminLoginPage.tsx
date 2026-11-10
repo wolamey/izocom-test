@@ -16,16 +16,14 @@ export default function AdminLoginPage() {
     navigate('/admin/home-page');
   };
 
-  return (
+  return ( 
     <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-sm">
         {/* Логотип */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-lg mb-3">
-            ИП
-          </div>
+            <img src="/logo.png" className='w-[150px] mb-3' alt="" />
+
           <h1 className="text-xl font-bold text-white">Админ-панель</h1>
-          <p className="text-sm text-gray-500 mt-1">Вход для сотрудников компании</p>
         </div>
 
         {/* Форма */}
