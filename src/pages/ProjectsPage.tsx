@@ -87,7 +87,7 @@ export default function ProjectsPage() {
             <span className="text-white font-medium">Наши объекты</span>
           </nav>
         </div>
-      </div>
+      </div> 
 
       {/* Hero Section */}
       <section className="relative bg-gray-900 py-20 lg:py-28 overflow-hidden">
