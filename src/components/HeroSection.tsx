@@ -62,7 +62,7 @@ export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Auto-rotate slides
+  // Auto-rotate slides 
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();

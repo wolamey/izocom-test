@@ -13,7 +13,7 @@ export default function EnergyEfficiencyPage() {
     { name: 'Продукт года', count: 7 },
   ];
 
-  const latestNews = [
+  const latestNews = [ 
     {
       title: 'Минск — Улан-Батор: «Изоком Пласт» укрепляет деловые связи с Монголией',
       image: 'https://izocomplast.ru/images/news/2026/10/27102026.jpg',
@@ -366,3 +366,4 @@ export default function EnergyEfficiencyPage() {
     </div>
   );
 }
+ 

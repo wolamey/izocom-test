@@ -197,7 +197,7 @@ export default function AdminHomePageEditor() {
     alert('Сохранение будет доступно после подключения API.');
   };
 
-  return (
+  return ( 
     <div className="pb-10">
       {/* Шапка редактора */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">

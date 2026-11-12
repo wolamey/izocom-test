@@ -26,6 +26,7 @@ import ScrollToTop from './components/ScrollToTop';
 import AdminLoginPage from './pages/admin/AdminLoginPage';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminHomePageEditorPage from './pages/admin/AdminHomePageEditorPage';
+import AdminAboutPageEditorPage from './pages/admin/AdminAboutPageEditorPage';
 import {
   AdminCatalogCategoriesPage,
   AdminCatalogProductsPage,
@@ -33,6 +34,15 @@ import {
   AdminNewsCreatePage,
   AdminPlaceholderPage,
 } from './pages/admin/AdminPlaceholderPages';
+import AdminEnergyEfficiencyEditorPage from './pages/admin/AdminEnergyEfficiencyEditorPage';
+import ArticleDetailPage from './pages/ArticleDetailPage';
+import AdminAllAboutPipesEditorPage from './pages/admin/AdminAllAboutPipesEditorPage';
+import AdminArticlesListPage from './pages/admin/AdminArticlesListPage';
+import AdminArticleEditorPage from './pages/admin/AdminArticleEditorPage';
+import AdminStandardsEditorPage from './pages/admin/AdminStandardsEditorPage';
+import AdminProjectsEditorPage from './pages/admin/AdminProjectsEditorPage';
+import AdminProjectsListPage from './pages/admin/AdminProjectsListPage';
+import AdminProjectEditorPage from './pages/admin/AdminProjectEditorPage';
 
 export default function App() {
   return (
@@ -46,11 +56,18 @@ export default function App() {
           <Route index element={<AdminHomePageEditorPage />} />
           <Route path="home-page" element={<AdminHomePageEditorPage />} />
           {/* Страницы сайта */}
-          <Route path="pages/about" element={<AdminPlaceholderPage title="О компании" description="Редактирование текстов и изображений страницы «О компании»" />} />
-          <Route path="pages/energy" element={<AdminPlaceholderPage title="Энергоэффективность" description="Редактирование страницы «Энергоэффективность»" />} />
-          <Route path="pages/about-pipes" element={<AdminPlaceholderPage title="Всё о трубах" description="Редактирование страницы «Всё о трубах»" />} />
-          <Route path="pages/standards" element={<AdminPlaceholderPage title="Стандарты" description="Редактирование страницы «Стандарты»" />} />
-          <Route path="pages/projects" element={<AdminPlaceholderPage title="Проекты" description="Редактирование страницы «Проекты» и карточек проектов" />} />
+          <Route path="pages/about" element={<AdminAboutPageEditorPage />} />
+   <Route path="pages/energy" element={<AdminEnergyEfficiencyEditorPage />} />
+
+     <Route path="pages/about-pipes" element={<AdminAllAboutPipesEditorPage />} />
+<Route path="pages/about-pipes/articles" element={<AdminArticlesListPage />} />
+<Route path="pages/about-pipes/articles/create" element={<AdminArticleEditorPage />} />
+<Route path="pages/about-pipes/articles/:id" element={<AdminArticleEditorPage/>} />
+  <Route path="pages/standards" element={<AdminStandardsEditorPage />} />
+     <Route path="pages/projects" element={<AdminProjectsEditorPage />} />
+<Route path="pages/projects/items" element={<AdminProjectsListPage />} />
+<Route path="pages/projects/items/create" element={<AdminProjectEditorPage />} />
+<Route path="pages/projects/items/:id" element={<AdminProjectEditorPage />} />
           <Route path="pages/documents" element={<AdminPlaceholderPage title="Документы" description="Редактирование страницы «Документы»" />} />
           <Route path="pages/contacts" element={<AdminPlaceholderPage title="Контакты" description="Редактирование страницы «Контакты»" />} />
           <Route path="pages/dealers" element={<AdminPlaceholderPage title="Представительства" description="Редактирование карточек дилеров и представительств" />} />
@@ -78,7 +95,8 @@ export default function App() {
                   <Route path="/documents" element={<DocumentsPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/energy" element={<EnergyEfficiencyPage />} />
-                  <Route path="/about-pipes" element={<AllAboutPipesPage />} />
+              <Route path="/about-pipes" element={<AllAboutPipesPage />} />
+<Route path="/articles/:slug" element={<ArticleDetailPage />} />
                   <Route path="/standards" element={<StandardsPage />} />
                   <Route path="/projects" element={<ProjectsPage />} />
                   <Route path="/projects/:projectId" element={<ProjectDetailPage />} />

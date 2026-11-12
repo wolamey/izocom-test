@@ -21,7 +21,7 @@ export default function HomePage() {
 
       {/* Hero Search Section - скрыт */}
       {/* <HeroSearchSection /> */}
-
+ 
       {/* Categories — чёрный фон */}
       <section className="relative bg-gray-900 py-12 sm:py-16 lg:py-28 overflow-hidden">
         <div className="absolute inset-0">
